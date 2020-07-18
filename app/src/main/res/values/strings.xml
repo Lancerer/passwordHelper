@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">PasswordHelper</string>
+    <string name="login_hint">登录PWordHelper</string>
+    <string name="login_username">请输入账号</string>
+    <string name="login_password">请输入密码</string>
+    <string name="login_login">登录</string>
+    <string name="login_register">注册</string>
+    <string name="login_fingerprint">使用指纹识别</string>
+    <string name="bottom_name_home">密码</string>
+    <string name="bottom_name_card">卡片</string>
+    <string name="bottom_name_category">分类</string>
+    <string name="bottom_name_setting">设置</string>
+
+    <string name="empty_view_hint">暂无数据</string>
+    <string name="error_view_hint">加载失败</string>
+    <string name="no_network_view_hint">网络异常</string>
 </resources>
