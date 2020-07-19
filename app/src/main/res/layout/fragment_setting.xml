@@ -67,8 +67,12 @@
 
                     <TextView
                         android:id="@+id/setting_fingerprint_tv"
-                        style="@style/SettingTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:text="@string/setting_spot_hint"
+                        android:textSize="18sp"
+                        android:textColor="@color/color_black"
                         app:layout_constraintBottom_toBottomOf="@id/setting_fingerprint_iv"
                         app:layout_constraintLeft_toRightOf="@id/setting_fingerprint_iv"
                         app:layout_constraintTop_toTopOf="@id/setting_fingerprint_iv" />
@@ -95,7 +99,11 @@
 
                     <TextView
                         android:id="@+id/setting_long_click_tv"
-                        style="@style/SettingTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/color_black"
                         android:text="@string/setting_long_click_hint"
                         app:layout_constraintBottom_toBottomOf="@id/setting_long_click_iv"
                         app:layout_constraintLeft_toRightOf="@id/setting_long_click_iv"

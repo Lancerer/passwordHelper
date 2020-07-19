@@ -7,6 +7,6 @@ class SettingViewModel : ViewModel() {
 
 
     private fun changeTheme() {
-
+    
     }
 }

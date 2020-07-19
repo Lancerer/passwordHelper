@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lancer.passwordhelper">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -36,9 +37,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.login.RegisterActivity">
-
-        </activity>
+        <activity android:name=".ui.activity.setting.AccountManagementActivity"></activity>
+        <activity android:name=".ui.activity.setting.TagActivity" />
+        <activity android:name=".ui.activity.setting.FolderActivity" />
+        <activity android:name=".ui.activity.setting.InOutActivity" />
+        <activity android:name=".ui.activity.setting.FeedbackActivity" />
+        <activity android:name=".ui.activity.setting.AboutActivity" />
+        <activity android:name=".ui.activity.login.RegisterActivity" />
         <activity android:name=".ui.activity.SplashActivity" />
         <activity android:name=".ui.activity.login.LoginActivity">
             <intent-filter>
@@ -47,9 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.MainActivity" />
     </application>
 
 </manifest>
