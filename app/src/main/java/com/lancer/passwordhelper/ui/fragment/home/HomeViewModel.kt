@@ -1,4 +1,4 @@
-package com.lancer.passwordhelper.ui.fragment.setting
+package com.lancer.passwordhelper.ui.fragment.home
 
 import androidx.lifecycle.ViewModel
 

@@ -17,7 +17,7 @@
         android:label="CardFragment" />
     <fragment
         android:id="@id/fragment_category"
-        android:name="com.lancer.passwordhelper.ui.fragment.category.categoryFragment"
+        android:name="com.lancer.passwordhelper.ui.fragment.category.CategoryFragment"
         android:label="CategoryFragmet" />
     <fragment
         android:id="@+id/fragment_setting"

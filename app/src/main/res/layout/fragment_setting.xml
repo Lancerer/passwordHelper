@@ -1,13 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.setting.SettingFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/bottom_name_setting" />
+        android:orientation="vertical"
+        tools:context=".ui.fragment.setting.SettingFragment">
 
-</FrameLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/setting_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@color/color_white">
+
+                    <ImageView
+                        android:id="@+id/setting_account_management_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+                        android:src="@drawable/ic_home"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/setting_account_management_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_account_management_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_account_management_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_account_management_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_account_management_iv" />
+
+                    <ImageView
+                        android:id="@+id/setting_fingerprint_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+
+                        android:src="@drawable/ic_fingerprint"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/setting_account_management_iv" />
+
+                    <TextView
+                        android:id="@+id/setting_fingerprint_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_spot_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_fingerprint_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_fingerprint_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_fingerprint_iv" />
+
+                    <Switch
+                        android:id="@+id/setting_fingerprint_switcch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_fingerprint_iv"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/setting_fingerprint_iv" />
+
+                    <ImageView
+                        android:id="@+id/setting_long_click_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+                        android:src="@drawable/ic_long_click"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/setting_fingerprint_iv" />
+
+                    <TextView
+                        android:id="@+id/setting_long_click_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_long_click_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_long_click_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_long_click_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_long_click_iv" />
+
+                    <Switch
+                        android:id="@+id/setting_long_click_switcch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_long_click_iv"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/setting_long_click_iv" />
+
+                    <ImageView
+                        android:id="@+id/setting_theme_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+                        android:src="@drawable/ic_theme"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/setting_long_click_iv" />
+
+                    <TextView
+                        android:id="@+id/setting_theme_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_theme_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_theme_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_theme_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_theme_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@color/color_white">
+
+                    <ImageView
+                        android:id="@+id/setting_tag_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="@string/setting_tag_hint"
+                        android:src="@drawable/ic_tag"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/setting_tag_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_tag_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_tag_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_tag_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_tag_iv" />
+
+                    <ImageView
+                        android:id="@+id/setting_folder_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+
+                        android:contentDescription="@string/setting_account_management_hint"
+                        android:src="@drawable/ic_folder"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/setting_tag_iv" />
+
+                    <TextView
+                        android:id="@+id/setting_folder_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_folder_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_folder_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_folder_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_folder_iv" />
+
+
+                    <ImageView
+                        android:id="@+id/setting_in_out_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+                        android:src="@drawable/ic_in_out"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/setting_folder_iv" />
+
+                    <TextView
+                        android:id="@+id/setting_in_out_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_in_out_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_in_out_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_in_out_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_in_out_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@color/color_white">
+
+                    <ImageView
+                        android:id="@+id/setting_share_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+                        android:src="@drawable/ic_share"
+
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/setting_share_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_share_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_share_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_share_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_share_iv" />
+
+                    <ImageView
+                        android:id="@+id/setting_feedback_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+
+                        android:src="@drawable/ic_feedback"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/setting_share_iv" />
+
+                    <TextView
+                        android:id="@+id/setting_feedback_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_feedback_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_feedback_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_feedback_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_feedback_iv" />
+
+                    <ImageView
+                        android:id="@+id/setting_update_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+                        android:src="@drawable/ic_update"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/setting_feedback_iv" />
+
+                    <TextView
+                        android:id="@+id/setting_update_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_update_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_update_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_update_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_update_iv" />
+
+                    <ImageView
+                        android:id="@+id/setting_about_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:contentDescription="@string/setting_account_management_hint"
+                        android:src="@drawable/ic_about"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/setting_update_iv" />
+
+                    <TextView
+                        android:id="@+id/setting_about_tv"
+                        style="@style/SettingTextViewStyle"
+                        android:text="@string/setting_about_hint"
+                        app:layout_constraintBottom_toBottomOf="@id/setting_about_iv"
+                        app:layout_constraintLeft_toRightOf="@id/setting_about_iv"
+                        app:layout_constraintTop_toTopOf="@id/setting_about_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

@@ -1,4 +1,4 @@
-package com.lancer.passwordhelper.ui.fragment.card
+package com.lancer.passwordhelper.ui.fragment.category
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,23 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.databinding.FragmentCardBinding
+import com.lancer.passwordhelper.databinding.FragmentCategoryBinding
 
-class CardFragment : BaseFragment<FragmentCardBinding>() {
+class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
     companion object {
-        fun newInstance() = CardFragment()
+        fun newInstance() = CategoryFragment()
     }
 
     override fun initView() {
-        binding.cardStatusView.showEmpty()
+        binding.categoryStatusView.showEmpty()
     }
 
     override fun initData() {
-
     }
 
-    override fun initLayout(): Int =R.layout.fragment_card
-
+    override fun initLayout(): Int = R.layout.fragment_category
 
 }

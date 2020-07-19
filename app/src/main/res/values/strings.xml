@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PasswordHelper</string>
     <string name="login_hint">登录PWordHelper</string>
-    <string name="login_username">请输入账号</string>
+    <string name="login_username">请输入用户名</string>
     <string name="login_password">请输入密码</string>
     <string name="login_login">登录</string>
     <string name="login_register">注册</string>
@@ -14,4 +14,21 @@
     <string name="empty_view_hint">暂无数据</string>
     <string name="error_view_hint">加载失败</string>
     <string name="no_network_view_hint">网络异常</string>
+    <string name="register_hint">注册PWordHelper</string>
+    <string name="register_register">注册</string>
+    <string name="register_login">已有账号？登录</string>
+    <string name="register_null_hint">不能为空</string>
+    <string name="password_diff_hint">两次输入的密码不一致，请检查</string>
+    <string name="setting_account_management_hint">主账号管理</string>
+    <string name="setting_spot_hint">生物识别</string>
+    <string name="setting_long_click_hint">长按赋值密码或卡号</string>
+    <string name="setting_theme_hint">主题颜色</string>
+    <string name="setting_tag_hint">标签管理</string>
+    <string name="setting_folder_hint">文件夹管理</string>
+    <string name="setting_in_out_hint">导入导出</string>
+    <string name="setting_share_hint">推荐给好友</string>
+    <string name="setting_feedback_hint">意见反馈</string>
+    <string name="setting_update_hint">检测更新</string>
+    <string name="setting_about_hint">关于</string>
+    <string name="unknow">未知情况</string>
 </resources>
