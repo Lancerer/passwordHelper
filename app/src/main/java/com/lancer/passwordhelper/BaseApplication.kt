@@ -6,7 +6,11 @@ import androidx.multidex.MultiDex
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import skin.support.SkinCompatManager
+import skin.support.app.SkinAppCompatViewInflater
+import skin.support.design.app.SkinMaterialViewInflater
 import kotlin.properties.Delegates
+
 
 /**
  *
@@ -22,6 +26,17 @@ class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
+        initSkin()
+    }
+
+    /**
+     * 初始化换肤矿建
+     */
+    private fun initSkin() {
+        SkinCompatManager.withoutActivity(this)
+            .addInflater(SkinAppCompatViewInflater())// 基础控件换肤初始化
+            .addInflater(SkinMaterialViewInflater())// material design 控件换肤初始化[可选]
+            .loadSkin()
     }
 
     override fun attachBaseContext(base: Context?) {

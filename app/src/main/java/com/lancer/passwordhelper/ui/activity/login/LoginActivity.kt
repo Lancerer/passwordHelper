@@ -1,9 +1,6 @@
 package com.lancer.passwordhelper.ui.activity.login
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.lancer.eyelast.base.BaseActivity
+import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.ActivityLoginBinding

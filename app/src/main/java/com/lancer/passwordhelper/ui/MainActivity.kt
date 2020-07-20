@@ -1,10 +1,8 @@
 package com.lancer.passwordhelper.ui
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.lancer.eyelast.base.BaseActivity
+import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.ActivityMainBinding
 

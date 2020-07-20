@@ -1,6 +1,6 @@
 package com.lancer.passwordhelper.ui.activity.login
 
-import com.lancer.eyelast.base.BaseActivity
+import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.ActivityRegisterBinding

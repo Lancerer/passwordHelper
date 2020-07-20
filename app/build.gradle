@@ -35,6 +35,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res',
+                           'src/main/res-black',
+                           'src/main/res-blue',
+                           'src/main/res-green',
+                           'src/main/res-orange',
+                           'src/main/res-pink',
+                           'src/main/res-red',
+                           'src/main/res-white',
+                           'src/main/res-yellow']
+        }
+    }
 }
 
 dependencies {
@@ -72,8 +85,6 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
     //adapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
-    //GSYVideoPlayer
-    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
     //refresh
     implementation 'com.scwang.smart:refresh-layout-kernel:2.0.0'
     implementation  'com.scwang.smart:refresh-header-classics:2.0.1'
@@ -81,12 +92,22 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
     // RxPermissions
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
-    //viewPager2
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    //photoView
-    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     //immersionbar
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
     //dialog
-    implementation 'com.afollestad.material-dialogs:bottomsheets:3.2.1'
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+
+
+    // skin-support
+    implementation 'skin.support:skin-support:4.0.5'
+    // skin-support 基础控件支持
+    implementation 'skin.support:skin-support-appcompat:4.0.5'
+    // skin-support-design material design
+    implementation 'skin.support:skin-support-design:4.0.5'
 }
+//GSYVideoPlayer
+//    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
+//viewPager2
+//    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+//photoView
+//    implementation 'com.github.chrisbanes:PhotoView:2.3.0'

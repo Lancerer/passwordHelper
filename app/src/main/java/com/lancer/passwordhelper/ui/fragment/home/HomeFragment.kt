@@ -1,6 +1,6 @@
 package com.lancer.passwordhelper.ui.fragment.home
 
-import com.lancer.eyelast.base.BaseFragment
+import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.FragmentHomeBinding
 

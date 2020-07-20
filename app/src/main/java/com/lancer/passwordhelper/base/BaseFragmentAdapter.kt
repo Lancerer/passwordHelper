@@ -1,4 +1,4 @@
-package com.lancer.eyelast.base
+package com.lancer.passwordhelper.base
 
 import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment

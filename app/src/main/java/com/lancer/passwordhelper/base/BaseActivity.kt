@@ -1,11 +1,12 @@
-package com.lancer.eyelast.base
+package com.lancer.passwordhelper.base
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.SkinAppCompatDelegateImpl
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.gyf.immersionbar.ImmersionBar
@@ -14,6 +15,12 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     protected lateinit var binding: V
     var name = "base"
 
+    /**
+     * 换肤框架
+     */
+    override fun getDelegate(): AppCompatDelegate {
+        return SkinAppCompatDelegateImpl.get(this, this);
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,14 +64,15 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
 
     open fun setStatusBarColor() {
-        ImmersionBar.with(this)
-            .autoStatusBarDarkModeEnable(true, 0.2f)
-            .fitsSystemWindows(true)
-            .statusBarColorInt(Color.WHITE)
-            .init()
+        ImmersionBar.hideStatusBar(window)
+//        ImmersionBar.with(this)
+//            .autoStatusBarDarkModeEnable(true, 0.2f)
+//            .fitsSystemWindows(true)
+//            .statusBarColorInt(Color.WHITE)
+//            .init()
     }
 
-     fun start(clz: Class<*>) {
-        startActivity(Intent(this,clz))
+    fun start(clz: Class<*>) {
+        startActivity(Intent(this, clz))
     }
 }
