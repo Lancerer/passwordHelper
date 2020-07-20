@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 29
@@ -15,14 +16,13 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        //multiDexEnabled
         multiDexEnabled true
     }
     kotlinOptions {
         jvmTarget = '1.8'
     }
     dataBinding {
-        //noinspection DataBindingWithoutKapt
+
         enabled true
     }
     compileOptions {
@@ -48,6 +48,13 @@ android {
                            'src/main/res-yellow']
         }
     }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.lancer.passwordhelper.model.database'
+        targetGenDir 'src.main.java'
+        generateTests false
+    }
 }
 
 dependencies {
@@ -66,7 +73,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //material
     implementation 'com.google.android.material:material:1.1.0'
-    //multidex
+    //multiDex
     implementation 'com.android.support:multidex:1.0.3'
     //recyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha04'
@@ -87,16 +94,17 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
     //refresh
     implementation 'com.scwang.smart:refresh-layout-kernel:2.0.0'
-    implementation  'com.scwang.smart:refresh-header-classics:2.0.1'
-    //leakcanary
+    implementation 'com.scwang.smart:refresh-header-classics:2.0.1'
+    //leakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
     // RxPermissions
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
-    //immersionbar
+    //immersionBar
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
     //dialog
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
-
+    // GreenDao
+    implementation 'org.greenrobot:greendao:3.3.0'
 
     // skin-support
     implementation 'skin.support:skin-support:4.0.5'
