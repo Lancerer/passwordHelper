@@ -52,7 +52,7 @@ android {
     greendao {
         schemaVersion 1
         daoPackage 'com.lancer.passwordhelper.model.database'
-        targetGenDir 'src.main.java'
+        targetGenDir 'src/main/java'
         generateTests false
     }
 }

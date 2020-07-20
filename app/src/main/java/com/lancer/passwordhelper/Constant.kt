@@ -13,6 +13,8 @@ object Constant {
     const val CURRENT_PASSWORD = "current_password"
     const val HAS_USER = "has_user"
 
+    const val HAS_INIT_DATABASE = "has_init_database"
+
 
     //换肤颜色
     const val DEFAULT = ""

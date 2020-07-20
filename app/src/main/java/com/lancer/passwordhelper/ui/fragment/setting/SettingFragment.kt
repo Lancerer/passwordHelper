@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
+import com.lancer.passwordhelper.BaseApplication
 import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
