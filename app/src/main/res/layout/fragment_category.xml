@@ -12,10 +12,16 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragment.category.CategoryFragment">
 
-        <TextView
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/category_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/bottom_name_category" />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
     </com.lancer.passwordhelper.widget.MultipleStatusView>
 </layout>

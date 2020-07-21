@@ -1,4 +1,4 @@
-package com.lancer.passwordhelper.network.scheduler
+package com.lancer.passwordhelper.model.network.scheduler
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

@@ -1,4 +1,4 @@
-package com.lancer.passwordhelper.network.exception
+package com.lancer.passwordhelper.model.network.exception
 
 
 object ErrorStatus {

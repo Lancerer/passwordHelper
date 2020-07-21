@@ -1,7 +1,6 @@
-package com.lancer.passwordhelper.network
+package com.lancer.passwordhelper.model.network
 
 
-import android.os.Build
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response

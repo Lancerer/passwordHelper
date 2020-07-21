@@ -1,4 +1,4 @@
-package com.lancer.passwordhelper.network
+package com.lancer.passwordhelper.model.network
 
 import com.lancer.passwordhelper.api.CommonApiService
 
@@ -7,7 +7,7 @@ import com.lancer.passwordhelper.api.CommonApiService
  * @des 管理网络请求的类
  * @Date 2020/7/2 13:16
  */
-class EyeLastNetWork {
+class MainNetWorkManager {
 
     private val commonApiService =
         HttpControl.getInstance(HttpControl.BASE_URL).create(CommonApiService::class.java)
@@ -16,13 +16,13 @@ class EyeLastNetWork {
 
     companion object {
 
-        private var network: EyeLastNetWork? = null
+        private var network: MainNetWorkManager? = null
 
-        fun getInstance(): EyeLastNetWork {
+        fun getInstance(): MainNetWorkManager {
             if (network == null) {
-                synchronized(EyeLastNetWork::class.java) {
+                synchronized(MainNetWorkManager::class.java) {
                     if (network == null) {
-                        network = EyeLastNetWork()
+                        network = MainNetWorkManager()
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package com.lancer.passwordhelper.network.scheduler;
+package com.lancer.passwordhelper.model.network.scheduler;
 
 import android.util.Log;
 
