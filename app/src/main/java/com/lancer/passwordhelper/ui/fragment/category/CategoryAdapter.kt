@@ -15,11 +15,7 @@ import com.lancer.passwordhelper.databinding.ItemCategoryBinding
  */
 class CategoryAdapter(layoutId: Int = R.layout.item_category) :
     BaseQuickAdapter<Category, BaseDataBindingHolder<ItemCategoryBinding>>(layoutId) {
-
-    override fun onItemViewHolderCreated(
-        viewHolder: BaseDataBindingHolder<ItemCategoryBinding>,
-        viewType: Int
-    ) {
+    override fun onItemViewHolderCreated(viewHolder: BaseDataBindingHolder<ItemCategoryBinding>, viewType: Int) {
         DataBindingUtil.bind<ItemCategoryBinding>(viewHolder.itemView)
     }
 
