@@ -42,7 +42,7 @@ public class CategoryDao extends AbstractDao<Category, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"CATEGORY\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "\"CATEGORY_NAME\" TEXT);"); // 1: categoryName
+                "\"CATEGORY_NAME\" TEXT NOT NULL );"); // 1: categoryName
     }
 
     /** Drops the underlying database table. */
@@ -59,11 +59,7 @@ public class CategoryDao extends AbstractDao<Category, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
- 
-        String categoryName = entity.getCategoryName();
-        if (categoryName != null) {
-            stmt.bindString(2, categoryName);
-        }
+        stmt.bindString(2, entity.getCategoryName());
     }
 
     @Override
@@ -74,11 +70,7 @@ public class CategoryDao extends AbstractDao<Category, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
- 
-        String categoryName = entity.getCategoryName();
-        if (categoryName != null) {
-            stmt.bindString(2, categoryName);
-        }
+        stmt.bindString(2, entity.getCategoryName());
     }
 
     @Override
@@ -90,7 +82,7 @@ public class CategoryDao extends AbstractDao<Category, Long> {
     public Category readEntity(Cursor cursor, int offset) {
         Category entity = new Category( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // categoryName
+            cursor.getString(offset + 1) // categoryName
         );
         return entity;
     }
@@ -98,7 +90,7 @@ public class CategoryDao extends AbstractDao<Category, Long> {
     @Override
     public void readEntity(Cursor cursor, Category entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setCategoryName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setCategoryName(cursor.getString(offset + 1));
      }
     
     @Override

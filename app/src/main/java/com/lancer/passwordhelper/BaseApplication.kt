@@ -41,7 +41,7 @@ class BaseApplication : Application() {
         super.onCreate()
         context = applicationContext
         instance = this
-        initSkin()
+        //   initSkin()
         initDataBase()
     }
 

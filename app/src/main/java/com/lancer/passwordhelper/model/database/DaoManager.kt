@@ -7,10 +7,10 @@ import io.reactivex.Observable
 
 /**
  * @author lancer
- * @des
+ * @des  数据库数据查询管理类
  * @Date 2020/7/21 8:54
  */
-class DaoManager {
+class DaoManager() {
 
     /**
      * 插入card

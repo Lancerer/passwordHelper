@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="themeName">
-        <item></item>
         <item>orange</item>
         <item>yellow</item>
         <item>green</item>
@@ -10,5 +9,16 @@
         <item>white</item>
         <item>pink</item>
         <item>red</item>
+    </string-array>
+
+    <string-array name="category">
+        <item></item>
+        <item>默认</item>
+        <item>教育</item>
+        <item>社交</item>
+        <item>办公</item>
+        <item>论坛</item>
+        <item>娱乐</item>
+
     </string-array>
 </resources>

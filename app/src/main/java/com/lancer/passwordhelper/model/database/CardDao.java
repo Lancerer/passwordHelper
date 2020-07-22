@@ -24,7 +24,7 @@ public class CardDao extends AbstractDao<Card, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Id = new Property(0, Long.class, "id", true, "id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Account = new Property(2, String.class, "account", false, "ACCOUNT");
         public final static Property Password = new Property(3, String.class, "password", false, "PASSWORD");
@@ -45,10 +45,10 @@ public class CardDao extends AbstractDao<Card, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"CARD\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
+                "\"id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
-                "\"ACCOUNT\" TEXT," + // 2: account
-                "\"PASSWORD\" TEXT," + // 3: password
+                "\"ACCOUNT\" TEXT NOT NULL ," + // 2: account
+                "\"PASSWORD\" TEXT NOT NULL ," + // 3: password
                 "\"WEB_URL\" TEXT," + // 4: webUrl
                 "\"IS_COLLECT\" INTEGER NOT NULL );"); // 5: isCollect
     }
@@ -72,16 +72,8 @@ public class CardDao extends AbstractDao<Card, Long> {
         if (name != null) {
             stmt.bindString(2, name);
         }
- 
-        String account = entity.getAccount();
-        if (account != null) {
-            stmt.bindString(3, account);
-        }
- 
-        String password = entity.getPassword();
-        if (password != null) {
-            stmt.bindString(4, password);
-        }
+        stmt.bindString(3, entity.getAccount());
+        stmt.bindString(4, entity.getPassword());
  
         String webUrl = entity.getWebUrl();
         if (webUrl != null) {
@@ -103,16 +95,8 @@ public class CardDao extends AbstractDao<Card, Long> {
         if (name != null) {
             stmt.bindString(2, name);
         }
- 
-        String account = entity.getAccount();
-        if (account != null) {
-            stmt.bindString(3, account);
-        }
- 
-        String password = entity.getPassword();
-        if (password != null) {
-            stmt.bindString(4, password);
-        }
+        stmt.bindString(3, entity.getAccount());
+        stmt.bindString(4, entity.getPassword());
  
         String webUrl = entity.getWebUrl();
         if (webUrl != null) {
@@ -131,8 +115,8 @@ public class CardDao extends AbstractDao<Card, Long> {
         Card entity = new Card( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // account
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // password
+            cursor.getString(offset + 2), // account
+            cursor.getString(offset + 3), // password
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // webUrl
             cursor.getInt(offset + 5) // isCollect
         );
@@ -143,8 +127,8 @@ public class CardDao extends AbstractDao<Card, Long> {
     public void readEntity(Cursor cursor, Card entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setAccount(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setPassword(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setAccount(cursor.getString(offset + 2));
+        entity.setPassword(cursor.getString(offset + 3));
         entity.setWebUrl(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setIsCollect(cursor.getInt(offset + 5));
      }

@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <com.lancer.passwordhelper.widget.MultipleStatusView
+    <LinearLayout
         android:id="@+id/category_status_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.fragment.category.CategoryFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:titleTextColor="@color/color_black" />
 
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:id="@+id/category_refresh"
@@ -23,5 +32,5 @@
                 android:layout_height="match_parent" />
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
-    </com.lancer.passwordhelper.widget.MultipleStatusView>
+    </LinearLayout>
 </layout>

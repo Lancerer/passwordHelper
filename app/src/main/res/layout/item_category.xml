@@ -21,7 +21,6 @@
             android:id="@+id/item_category_name_tv"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="@{viewModel.categoryName}"
             android:textColor="@color/color_black"

@@ -27,7 +27,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
 
     override fun initView() {
-
+        binding.toolbar.title = "分类"
     }
 
     override fun initData() {
@@ -35,18 +35,10 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
         binding.categoryRecycler.adapter = mAdapter
         binding.categoryRecycler.layoutManager = GridLayoutManager(context, 3)
         //TODO 添加ItemDecoration
-        val daoManager = DaoManager()
-        val queryAllCard = daoManager.queryAllCategory() as MutableList<Category>
-        if (queryAllCard.isNotEmpty()) {
-            for (category in queryAllCard) {
-                Log.d("category", category.categoryName)
-            }
-        }
-        mAdapter.setNewInstance(queryAllCard)
 
-//        viewModel.dataListLiveData.observe(this, Observer { result ->
-//            val response = result.getOrNull()
-//            mAdapter.setNewInstance(response as MutableList<Category>?)
+//        viewModel.requestCategoryList()
+//        viewModel.dataList.observe(this, Observer {
+//            mAdapter.setNewInstance(it as MutableList<Category>)
 //        })
     }
 

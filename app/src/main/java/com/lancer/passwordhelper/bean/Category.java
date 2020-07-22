@@ -1,8 +1,10 @@
 package com.lancer.passwordhelper.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.NotNull;
+import org.greenrobot.greendao.annotation.Property;
 
 /**
  * @author lancer
@@ -13,15 +15,19 @@ import org.greenrobot.greendao.annotation.Generated;
 public class Category {
     @Id(autoincrement = true)
     private Long id;
+    @NotNull
+    @Property(nameInDb = "CATEGORY_NAME")
     private String categoryName;
-    @Generated(hash = 686479975)
-    public Category(Long id, String categoryName) {
+    @Generated(hash = 984232919)
+    public Category(Long id, @NotNull String categoryName) {
         this.id = id;
         this.categoryName = categoryName;
     }
     @Generated(hash = 1150634039)
     public Category() {
     }
+
+
 
     public Category(String categoryName) {
         this.categoryName = categoryName;

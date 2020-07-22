@@ -1,30 +1,28 @@
 package com.lancer.passwordhelper.base
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.app.SkinAppCompatDelegateImpl
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.gyf.immersionbar.ImmersionBar
+import com.lancer.passwordhelper.R
 
 abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     protected lateinit var binding: V
-    var name = "base"
+    var baseTag = "base"
 
     /**
      * 换肤框架
      */
-    override fun getDelegate(): AppCompatDelegate {
-        return SkinAppCompatDelegateImpl.get(this, this);
-    }
+//    override fun getDelegate(): AppCompatDelegate {
+//        return SkinAppCompatDelegateImpl.get(this, this);
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(name, "onCreate")
+        Log.d(baseTag, "onCreate")
         binding = DataBindingUtil.setContentView(this, initLayout())
         setStatusBarColor()
         initView()
@@ -33,28 +31,28 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d(name, "onStart")
+        Log.d(baseTag, "onStart")
 
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(name, "onResume")
+        Log.d(baseTag, "onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(name, "onPause")
+        Log.d(baseTag, "onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d(name, "onStop")
+        Log.d(baseTag, "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(name, "onDestroy")
+        Log.d(baseTag, "onDestroy")
         binding.unbind()
     }
 
@@ -64,12 +62,12 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
 
     open fun setStatusBarColor() {
-        ImmersionBar.hideStatusBar(window)
-//        ImmersionBar.with(this)
-//            .autoStatusBarDarkModeEnable(true, 0.2f)
-//            .fitsSystemWindows(true)
-//            .statusBarColorInt(Color.WHITE)
-//            .init()
+//        ImmersionBar.hideStatusBar(window)
+        ImmersionBar.with(this)
+            .autoStatusBarDarkModeEnable(true, 0.2f)
+            .fitsSystemWindows(true)
+            .statusBarColor(R.color.color_gary)
+            .init()
     }
 
     fun start(clz: Class<*>) {
