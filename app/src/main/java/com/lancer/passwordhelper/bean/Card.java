@@ -30,16 +30,21 @@ public class Card {
 
     @Property(nameInDb = "WEB_URL")
     private String webUrl;
+
+    @Property(nameInDb = "FOLDER")
+    private String folder;
+    
     private int isCollect;
 
-    @Generated(hash = 1643320226)
+    @Generated(hash = 945881902)
     public Card(Long id, String name, @NotNull String account,
-            @NotNull String password, String webUrl, int isCollect) {
+            @NotNull String password, String webUrl, String folder, int isCollect) {
         this.id = id;
         this.name = name;
         this.account = account;
         this.password = password;
         this.webUrl = webUrl;
+        this.folder = folder;
         this.isCollect = isCollect;
     }
 
@@ -93,6 +98,14 @@ public class Card {
 
     public void setIsCollect(int isCollect) {
         this.isCollect = isCollect;
+    }
+
+    public String getFolder() {
+        return this.folder;
+    }
+
+    public void setFolder(String folder) {
+        this.folder = folder;
     }
 
 }

@@ -57,3 +57,9 @@
 ```
 
 6. 注意在设置控件的颜色的时候，     android:background="@color/colorPrimary" ，之后框架会自动替换颜色
+
+
+#### 项目中的一些问题
+- spinner 默认选中
+- lateinit var 延迟加载问题
+- recyclerView Decoration 分割线问题

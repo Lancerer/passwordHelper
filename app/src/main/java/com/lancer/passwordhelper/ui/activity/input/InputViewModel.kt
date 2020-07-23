@@ -1,13 +1,12 @@
 package com.lancer.passwordhelper.ui.activity.input
 
 import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.viewModelScope
-import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.bean.Card
+import com.lancer.passwordhelper.bean.Category
 import com.lancer.passwordhelper.model.MainRepository
-import kotlinx.android.synthetic.main.activity_input.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -18,18 +17,16 @@ import kotlinx.coroutines.launch
  */
 class InputViewModel(private val repository: MainRepository) : ViewModel() {
 
-    fun onClick(view: View) {
-        when (view.id) {
-            R.id.input_back_iv -> {
-
-            }
+    val spinnerDataList = MutableLiveData<List<Category>>()
+    fun getCategoryList() {
+        viewModelScope.launch(Dispatchers.Main) {
+            spinnerDataList.value = repository.getCategoryListFromDataBase()
         }
     }
 
-
     fun saveCard(card: Card) {
         viewModelScope.launch(Dispatchers.Main) {
-         repository.saveCard(card)
+            repository.saveCard(card)
         }
     }
 }

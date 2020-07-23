@@ -24,6 +24,7 @@
             android:gravity="center"
             android:text="@{viewModel.categoryName}"
             android:textColor="@color/color_black"
+            android:background="@color/colorAccent"
             android:textSize="28sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"

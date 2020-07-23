@@ -3,6 +3,10 @@ package com.lancer.passwordhelper.ui.activity.input
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.SimpleAdapter
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
 import com.lancer.passwordhelper.InjectorUtil
@@ -23,8 +27,12 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
     private var password: String? = null
     private var link: String? = null
     private var remark: String? = null
+    private var folder: String? = null
 
     private var hasSee: Boolean = false
+
+    private lateinit var mSpinnerAdapter: ArrayAdapter<String>
+    fun isInit() = ::mSpinnerAdapter.isInitialized
 
     private val viewModel by lazy {
         ViewModelProvider(
@@ -39,9 +47,38 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         binding.inputLikeIv.setOnClickListener(this)
         binding.inputSaveIv.setOnClickListener(this)
         binding.inputEnableIv.setOnClickListener(this)
+
+        //spinner默认选中第一项
+        binding.inputSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (isInit()) {
+                    folder = mSpinnerAdapter.getItem(position)
+                    folder?.showToast()
+                }
+            }
+
+        }
     }
 
     override fun initData() {
+        viewModel.getCategoryList()
+        viewModel.spinnerDataList.observe(this, Observer {
+            val list = ArrayList<String>()
+            for (category in it) {
+                list.add(category.categoryName)
+            }
+            mSpinnerAdapter =
+                ArrayAdapter(this@InputActivity, android.R.layout.simple_list_item_1, list)
+            binding.inputSpinner.adapter = mSpinnerAdapter
+        })
     }
 
     override fun onClick(v: View?) {
@@ -50,6 +87,7 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         password = binding.inputPasswordEt.text?.trim().toString()
         link = binding.inputLinkEt.text?.trim().toString()
         remark = binding.inputRemarkEt.text?.trim().toString()
+
         when (v?.id) {
             R.id.input_back_iv -> {
                 backLogic()
@@ -94,32 +132,29 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
             return
         }
         //名称为空的情况
+        val card = Card()
+        card.account = account
+        card.password = password
+        card.webUrl = link
+        card.isCollect = 0
         if (name.isNullOrEmpty()) {
-            val card = Card()
             card.name = account
-            card.account = account
-            card.password = password
-            card.webUrl = link
-            card.isCollect = 0
-            viewModel.saveCard(card)
-            getString(R.string.input_save_success).showToast()
-            finish()
         } else {
-            val card = Card()
             card.name = name
-            card.account = account
-            card.password = password
-            card.webUrl = link
-            card.isCollect = 0
-            viewModel.saveCard(card)
-            getString(R.string.input_save_success).showToast()
-            finish()
         }
+        if (folder.isNullOrEmpty()) {
+            card.folder = "默认"
+        } else {
+            card.folder = folder
+        }
+        viewModel.saveCard(card)
+        getString(R.string.input_save_success).showToast()
+        finish()
 
     }
 
     /**
-     * 先隐藏密码
+     * 是否隐藏密码
      */
     private fun isEnablePwd() {
         if (!hasSee) {
