@@ -11,7 +11,7 @@ import com.lancer.passwordhelper.R
 
 abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     protected lateinit var binding: V
-    var baseTag = "base"
+     var baseTag = "base"
 
     /**
      * 换肤框架
@@ -22,7 +22,7 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(baseTag, "onCreate")
+        Log.w(baseTag, "onCreate")
         binding = DataBindingUtil.setContentView(this, initLayout())
         setStatusBarColor()
         initView()
@@ -31,28 +31,28 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d(baseTag, "onStart")
+        Log.w(baseTag, "onStart")
 
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(baseTag, "onResume")
+        Log.w(baseTag, "onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(baseTag, "onPause")
+        Log.w(baseTag, "onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d(baseTag, "onStop")
+        Log.w(baseTag, "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(baseTag, "onDestroy")
+        Log.w(baseTag, "onDestroy")
         binding.unbind()
     }
 

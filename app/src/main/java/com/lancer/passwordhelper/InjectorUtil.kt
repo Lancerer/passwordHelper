@@ -5,6 +5,7 @@ import com.lancer.passwordhelper.model.database.DaoManager
 import com.lancer.passwordhelper.model.network.MainNetWorkManager
 import com.lancer.passwordhelper.ui.activity.input.InputViewModelFactory
 import com.lancer.passwordhelper.ui.fragment.category.CategoryViewModelFactory
+import com.lancer.passwordhelper.ui.fragment.home.HomeViewModelFactory
 
 /**
  * @author lancer
@@ -22,5 +23,7 @@ object InjectorUtil {
     fun getCategoryViewModelFactory() = CategoryViewModelFactory(getMainRepository())
 
     fun getInputViewModelFactory() = InputViewModelFactory(getMainRepository())
+
+    fun getHomeViewModelFactory() = HomeViewModelFactory(getMainRepository())
 
 }

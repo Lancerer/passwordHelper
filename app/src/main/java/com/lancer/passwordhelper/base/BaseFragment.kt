@@ -27,12 +27,12 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = context as Activity
-        Log.d(name, "onAttach")
+        Log.w(name, "onAttach")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(name, "onCreate")
+        Log.w(name, "onCreate")
     }
 
     override fun onCreateView(
@@ -40,7 +40,7 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d(name, "onCreateView")
+        Log.w(name, "onCreateView")
         binding = DataBindingUtil.inflate(inflater, initLayout(), container, false)
         return binding.root
 
@@ -48,55 +48,56 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d(name, "onActivityCreated")
+        Log.w(name, "onActivityCreated")
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(name, "onViewCreated")
-        initView()
-        initData()
+        Log.w(name, "onViewCreated")
+
     }
 
 
     override fun onStart() {
         super.onStart()
-        Log.d(name, "onStart")
+        Log.w(name, "onStart")
 
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(name, "onResume")
+        Log.w(name, "onResume")
+        initView()
+        initData()
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(name, "onPause")
+        Log.w(name, "onPause")
 
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d(name, "onStop")
+        Log.w(name, "onStop")
 
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d(name, "onDestroyView")
+        Log.w(name, "onDestroyView")
         binding.unbind()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(name, "onDestroy")
+        Log.w(name, "onDestroy")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.d(name, "onDetach")
+        Log.w(name, "onDetach")
 
     }
 

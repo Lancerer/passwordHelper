@@ -26,6 +26,7 @@ class InputViewModel(private val repository: MainRepository) : ViewModel() {
         }
     }
 
+
     fun saveCard(card: Card) {
         viewModelScope.launch(Dispatchers.Main) {
          repository.saveCard(card)

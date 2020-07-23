@@ -6,6 +6,10 @@ import com.lancer.passwordhelper.databinding.ActivityAccountManagementBinding
 import com.lancer.passwordhelper.extension.showToast
 
 class AccountManagementActivity : BaseActivity<ActivityAccountManagementBinding>() {
+    init {
+        baseTag = AccountManagementActivity::class.java.simpleName
+    }
+
     override fun initView() {
         "AccountManagementActivity".showToast()
     }
@@ -13,6 +17,6 @@ class AccountManagementActivity : BaseActivity<ActivityAccountManagementBinding>
     override fun initData() {
     }
 
-    override fun initLayout(): Int=R.layout.activity_account_management
+    override fun initLayout(): Int = R.layout.activity_account_management
 
 }

@@ -6,6 +6,10 @@ import com.lancer.passwordhelper.databinding.ActivityFolderBinding
 import com.lancer.passwordhelper.extension.showToast
 
 class FolderActivity : BaseActivity<ActivityFolderBinding>() {
+    init {
+        baseTag = FolderActivity::class.java.simpleName
+    }
+
     override fun initView() {
         "FolderActivity".showToast()
     }

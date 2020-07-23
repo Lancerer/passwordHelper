@@ -14,6 +14,10 @@ import com.lancer.passwordhelper.extension.showToast
 
 class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener {
 
+    init {
+        baseTag = InputActivity::class.java.simpleName
+    }
+
     private var name: String? = null
     private var account: String? = null
     private var password: String? = null
@@ -35,24 +39,26 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         binding.inputLikeIv.setOnClickListener(this)
         binding.inputSaveIv.setOnClickListener(this)
         binding.inputEnableIv.setOnClickListener(this)
-
     }
 
     override fun initData() {
-
-
     }
 
     override fun onClick(v: View?) {
+        name = binding.inputNameEt.text?.trim().toString()
+        account = binding.inputAccountEt.text?.trim().toString()
+        password = binding.inputPasswordEt.text?.trim().toString()
+        link = binding.inputLinkEt.text?.trim().toString()
+        remark = binding.inputRemarkEt.text?.trim().toString()
         when (v?.id) {
             R.id.input_back_iv -> {
                 backLogic()
             }
             R.id.input_random_iv -> {
-                //todo
+                //TODO
             }
             R.id.input_like_iv -> {
-
+                //TODO
             }
             R.id.input_save_iv -> {
                 saveCard()
@@ -63,34 +69,28 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         }
     }
 
+    /**
+     * 返回逻辑
+     */
     private fun backLogic() {
-        name = binding.inputNameEt.text?.trim().toString()
-        account = binding.inputAccountEt.text?.trim().toString()
-        password = binding.inputPasswordEt.text?.trim().toString()
-        link = binding.inputLinkEt.text?.trim().toString()
-        remark = binding.inputRemarkEt.text?.trim().toString()
-
         if (!name.isNullOrEmpty() || !account.isNullOrEmpty() || !password.isNullOrEmpty() || !link.isNullOrEmpty() || !remark.isNullOrEmpty()) {
             MaterialDialog(this).show {
-                title = "输入框中还有未保存数据，是否继续推出？"
-                positiveButton { finish() }
-                negativeButton { }
+                title = getString(R.string.input_edit_text_has_data)
+                positiveButton(R.string.confirm) { finish() }
+                negativeButton(R.string.cancel)
             }
         } else {
+            //TODO
             finish()
         }
     }
 
+    /**
+     * 保存密码
+     */
     private fun saveCard() {
-        name = binding.inputNameEt.text?.trim().toString()
-        account = binding.inputAccountEt.text?.trim().toString()
-        password = binding.inputPasswordEt.text?.trim().toString()
-        link = binding.inputLinkEt.text?.trim().toString()
-        remark = binding.inputRemarkEt.text?.trim().toString()
-
-
         if (account.isNullOrEmpty() || password.isNullOrEmpty()) {
-            "账号密码不能为空".showToast()
+            getString(R.string.register_null_hint).showToast()
             return
         }
         //名称为空的情况
@@ -102,7 +102,7 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
             card.webUrl = link
             card.isCollect = 0
             viewModel.saveCard(card)
-            "保存成功".showToast()
+            getString(R.string.input_save_success).showToast()
             finish()
         } else {
             val card = Card()
@@ -112,12 +112,15 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
             card.webUrl = link
             card.isCollect = 0
             viewModel.saveCard(card)
-            "保存成功".showToast()
+            getString(R.string.input_save_success).showToast()
             finish()
         }
 
     }
 
+    /**
+     * 先隐藏密码
+     */
     private fun isEnablePwd() {
         if (!hasSee) {
             hasSee = true

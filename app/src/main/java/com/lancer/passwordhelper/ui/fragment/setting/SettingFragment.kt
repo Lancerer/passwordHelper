@@ -11,11 +11,16 @@ import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.FragmentSettingBinding
 import com.lancer.passwordhelper.extension.showToast
+import com.lancer.passwordhelper.ui.fragment.category.CategoryFragment
 import com.lancer.passwordhelper.utils.SHARE_MORE
 import com.lancer.passwordhelper.utils.ShareUtils
 import skin.support.SkinCompatManager
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickListener {
+
+    init {
+        name = SettingFragment::class.java.simpleName
+    }
 
     override fun initView() {
         binding.settingToolbar.title = getString(R.string.bottom_name_setting)

@@ -7,6 +7,10 @@ import com.lancer.passwordhelper.extension.showToast
 
 class TagActivity : BaseActivity<ActivityTagBinding>() {
 
+    init {
+        baseTag = TagActivity::class.java.simpleName
+    }
+
     override fun initView() {
         "tag".showToast()
     }

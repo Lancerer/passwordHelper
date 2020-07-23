@@ -17,7 +17,7 @@
     <string name="register_hint">注册PWordHelper</string>
     <string name="register_register">注册</string>
     <string name="register_login">已有账号？登录</string>
-    <string name="register_null_hint">不能为空</string>
+    <string name="register_null_hint">账号密码不能为空</string>
     <string name="password_diff_hint">两次输入的密码不一致，请检查</string>
     <string name="setting_account_management_hint">主账号管理</string>
     <string name="setting_spot_hint">生物识别</string>
@@ -32,4 +32,8 @@
     <string name="setting_about_hint">关于</string>
     <string name="unknow">未知情况</string>
     <string name="no_update_hint">当前已经是最新版</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="input_edit_text_has_data">输入框中还有未保存数据，是否继续推出？</string>
+    <string name="input_save_success">保存成功</string>
 </resources>

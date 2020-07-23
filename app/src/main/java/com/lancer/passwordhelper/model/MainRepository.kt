@@ -1,12 +1,8 @@
 package com.lancer.passwordhelper.model
 
-import android.annotation.SuppressLint
 import com.lancer.passwordhelper.bean.Card
-import com.lancer.passwordhelper.bean.Category
 import com.lancer.passwordhelper.model.database.DaoManager
 import com.lancer.passwordhelper.model.network.MainNetWorkManager
-import io.reactivex.Observable
-import io.reactivex.ObservableOnSubscribe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -23,12 +19,15 @@ class MainRepository(
         list
     }
 
-    suspend fun saveCard(card: Card)= withContext(Dispatchers.IO){
+    suspend fun saveCard(card: Card) = withContext(Dispatchers.IO) {
         val insertCard = daoManager.insertCard(card)
         insertCard
     }
 
-
+    suspend fun getCardLstFromDataBase() = withContext(Dispatchers.IO) {
+        val list = daoManager.queryAllCard()
+        list
+    }
 
 
     companion object {

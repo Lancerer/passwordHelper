@@ -8,6 +8,9 @@ import com.lancer.passwordhelper.extension.showToast
 import com.lancer.passwordhelper.utils.AppPrefsUtils
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
+    init {
+        baseTag = RegisterActivity::class.java.simpleName
+    }
 
     private var username: String? = null
     private var password: String? = null

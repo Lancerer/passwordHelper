@@ -113,6 +113,10 @@ dependencies {
     implementation 'skin.support:skin-support-appcompat:4.0.5'
     // skin-support-design material design
     implementation 'skin.support:skin-support-design:4.0.5'
+
+    // https://mvnrepository.com/artifact/com.belerweb/pinyin4j
+    implementation group: 'com.belerweb', name: 'pinyin4j', version: '2.5.0'
+
 }
 //GSYVideoPlayer
 //    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
