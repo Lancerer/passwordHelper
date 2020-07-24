@@ -16,7 +16,7 @@ class CategoryViewModel(private val repository: MainRepository) : ViewModel() {
 
 
     fun requestCategoryList() {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch(Dispatchers.IO) {
             dataList.value = repository.getCategoryListFromDataBase()
         }
     }

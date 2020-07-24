@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lancer.passwordhelper.bean.Card
 import com.lancer.passwordhelper.model.MainRepository
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -13,8 +15,11 @@ class HomeViewModel(private val repository: MainRepository) : ViewModel() {
     val dataList = MutableLiveData<List<Card>>()
 
     fun getCardList() {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch(Dispatchers.IO) {
             dataList.value = repository.getCardLstFromDataBase()
         }
     }
 }
+
+
+

@@ -19,13 +19,13 @@ class InputViewModel(private val repository: MainRepository) : ViewModel() {
 
     val spinnerDataList = MutableLiveData<List<Category>>()
     fun getCategoryList() {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch(Dispatchers.IO) {
             spinnerDataList.value = repository.getCategoryListFromDataBase()
         }
     }
 
     fun saveCard(card: Card) {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.saveCard(card)
         }
     }
