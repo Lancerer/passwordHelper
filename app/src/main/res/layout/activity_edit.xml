@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.edit.EditActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/edit_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextColor="@color/color_black">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/header_rl"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_toolbar">
+
+            <TextView
+                android:id="@+id/herader_title_tv"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="微博"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_rl">
+
+            <TextView
+                android:id="@+id/edit_account_hint_tv"
+                style="@style/EditTextViewStyle_blue"
+                android:layout_marginTop="10dp"
+                android:text="@string/app_account"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/edit_account_tv"
+                style="@style/EditTextViewStyle_black"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toBottomOf="@id/edit_account_hint_tv"
+                tools:ignore="MissingConstraints"
+                tools:text="18777777777" />
+
+            <TextView
+                android:id="@+id/edit_copy_account_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:text="@string/app_copy"
+                android:textColor="@color/colorAccent_blue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/edit_account_tv"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/edit_account_tv" />
+
+            <TextView
+                android:id="@+id/edit_password_hint_tv"
+                style="@style/EditTextViewStyle_blue"
+                android:layout_marginTop="20dp"
+                android:text="@string/app_password"
+                app:layout_constraintTop_toBottomOf="@+id/edit_account_tv"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/edit_password_tv"
+                style="@style/EditTextViewStyle_black"
+                android:layout_marginTop="5dp"
+                android:inputType="textPassword"
+                app:layout_constraintTop_toBottomOf="@id/edit_password_hint_tv"
+                tools:ignore="MissingConstraints"
+                tools:text="18777777777" />
+
+            <ImageView
+                android:id="@+id/edit_enable_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_password_disable"
+                app:layout_constraintBottom_toBottomOf="@id/edit_copy_password_tv"
+                app:layout_constraintRight_toLeftOf="@id/edit_copy_password_tv"
+                app:layout_constraintTop_toTopOf="@id/edit_copy_password_tv" />
+
+            <TextView
+                android:id="@+id/edit_copy_password_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:text="@string/app_copy"
+                android:textColor="@color/colorAccent_blue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/edit_password_tv"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/edit_password_tv" />
+
+            <TextView
+                android:id="@+id/edit_link_hint_tv"
+                style="@style/EditTextViewStyle_blue"
+                android:layout_marginTop="20dp"
+                android:text="@string/app_link"
+                app:layout_constraintTop_toBottomOf="@+id/edit_password_tv"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/edit_link_tv"
+                style="@style/EditTextViewStyle_black"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toBottomOf="@id/edit_link_hint_tv"
+                tools:ignore="MissingConstraints"
+                tools:text="http://www.baidu.com" />
+
+            <TextView
+                android:id="@+id/edit_copy_link_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:text="@string/app_copy"
+                android:textColor="@color/colorAccent_blue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/edit_link_tv"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/edit_link_tv" />
+
+            <TextView
+                android:id="@+id/edit_remark_hint_tv"
+                style="@style/EditTextViewStyle_blue"
+                android:layout_marginTop="20dp"
+                android:text="@string/app_remark"
+                app:layout_constraintTop_toBottomOf="@+id/edit_link_tv"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/edit_remark_tv"
+                style="@style/EditTextViewStyle_black"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edit_remark_hint_tv"
+                tools:ignore="MissingConstraints"
+                tools:text="http://www.baidu.com" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/edit_delete_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_eidt_delete_bg"
+            android:padding="15dp"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toRightOf="@+id/edit_edit_iv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/content_cl" />
+
+        <ImageView
+            android:id="@+id/edit_edit_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_eidt_edit_bg"
+            android:padding="15dp"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/edit_delete_iv"
+            app:layout_constraintTop_toBottomOf="@id/content_cl" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

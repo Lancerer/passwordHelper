@@ -36,4 +36,9 @@
     <string name="cancel">取消</string>
     <string name="input_edit_text_has_data">输入框中还有未保存数据，是否继续推出？</string>
     <string name="input_save_success">保存成功</string>
+    <string name="app_account">账号</string>
+    <string name="app_password">密码</string>
+    <string name="app_link">链接</string>
+    <string name="app_remark">备注</string>
+    <string name="app_copy">复制</string>
 </resources>

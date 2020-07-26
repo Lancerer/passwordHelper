@@ -12,6 +12,7 @@ import com.lancer.passwordhelper.bean.Card
 import com.lancer.passwordhelper.databinding.FragmentHomeBinding
 import com.lancer.passwordhelper.extension.showToast
 import com.lancer.passwordhelper.model.database.DaoManager
+import com.lancer.passwordhelper.ui.activity.edit.EditActivity
 import com.lancer.passwordhelper.ui.activity.input.InputActivity
 import com.lancer.passwordhelper.ui.activity.setting.InOutActivity
 
@@ -22,6 +23,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private lateinit var mAdapter: HomeAdapter
+
+    private var dataList = ArrayList<Card>()
 
     private val viewModel: HomeViewModel by lazy {
         ViewModelProvider(
@@ -44,11 +47,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initData() {
         viewModel.getCardList()
         viewModel.dataList.observe(this, Observer {
-            mAdapter.setNewInstance(it as MutableList<Card>)
+            for (card in it) {
+                dataList.add(card)
+            }
+            mAdapter.setNewInstance(dataList)
         })
 
         mAdapter.setOnItemClickListener { adapter, view, position ->
             //TODO
+            val intent = Intent(activity, EditActivity::class.java)
+            intent.putExtra("list", dataList[position])
+            startActivity(intent)
         }
     }
 

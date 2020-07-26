@@ -19,7 +19,7 @@ class InputViewModel(private val repository: MainRepository) : ViewModel() {
 
     val spinnerDataList = MutableLiveData<List<Category>>()
     fun getCategoryList() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Main) {
             spinnerDataList.value = repository.getCategoryListFromDataBase()
         }
     }

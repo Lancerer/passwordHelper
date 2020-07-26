@@ -6,13 +6,17 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 
+import java.io.Serializable;
+
 /**
  * @author lancer
  * @des
  * @Date 2020/7/20 17:29
  */
 @Entity
-public class Card {
+public class Card implements Serializable {
+
+    private static final long serialVersionUID = -8773931339633931708L;
     @Id(autoincrement = true)
     @Property(nameInDb = "id")
     private Long id;
@@ -33,12 +37,12 @@ public class Card {
 
     @Property(nameInDb = "FOLDER")
     private String folder;
-    
+
     private int isCollect;
 
     @Generated(hash = 945881902)
     public Card(Long id, String name, @NotNull String account,
-            @NotNull String password, String webUrl, String folder, int isCollect) {
+                @NotNull String password, String webUrl, String folder, int isCollect) {
         this.id = id;
         this.name = name;
         this.account = account;
@@ -108,4 +112,16 @@ public class Card {
         this.folder = folder;
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", webUrl='" + webUrl + '\'' +
+                ", folder='" + folder + '\'' +
+                ", isCollect=" + isCollect +
+                '}';
+    }
 }

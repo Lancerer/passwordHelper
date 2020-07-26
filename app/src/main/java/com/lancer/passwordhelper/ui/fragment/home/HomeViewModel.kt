@@ -15,7 +15,7 @@ class HomeViewModel(private val repository: MainRepository) : ViewModel() {
     val dataList = MutableLiveData<List<Card>>()
 
     fun getCardList() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Main) {
             dataList.value = repository.getCardLstFromDataBase()
         }
     }
