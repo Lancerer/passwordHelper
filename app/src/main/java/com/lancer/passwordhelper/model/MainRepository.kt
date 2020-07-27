@@ -29,6 +29,10 @@ class MainRepository(
         list
     }
 
+    suspend fun deleteCard(card: Card)= withContext(Dispatchers.IO){
+        daoManager.deleteCard(card)
+    }
+
 
     companion object {
         private var repository: MainRepository? = null

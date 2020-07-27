@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         ).get(HomeViewModel::class.java)
     }
 
+    //TODO 删除数据后界面不更新 和BaseQuickAdapter的方法有关系
     override fun initView() {
         binding.toolbar.title = "主页"
         binding.homeAddFloat.setOnClickListener {
@@ -42,16 +43,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.homeRecycler.layoutManager = LinearLayoutManager(activity)
         mAdapter = HomeAdapter()
         binding.homeRecycler.adapter = mAdapter
-    }
-
-    override fun initData() {
-        viewModel.getCardList()
-        viewModel.dataList.observe(this, Observer {
-            for (card in it) {
-                dataList.add(card)
-            }
-            mAdapter.setNewInstance(dataList)
-        })
 
         mAdapter.setOnItemClickListener { adapter, view, position ->
             //TODO
@@ -59,6 +50,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             intent.putExtra("list", dataList[position])
             startActivity(intent)
         }
+    }
+
+    override fun initData() {
+        viewModel.getCardList()
+        viewModel.dataList.observe(this, Observer {
+            if (dataList.isNotEmpty()) dataList.clear()
+            for (card in it) {
+                dataList.add(card)
+            }
+            //TODO setList 和setNewInstance的区别
+            mAdapter.setList(dataList)
+        })
+
     }
 
     override fun initLayout(): Int = R.layout.fragment_home

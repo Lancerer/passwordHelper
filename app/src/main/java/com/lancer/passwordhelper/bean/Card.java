@@ -38,17 +38,21 @@ public class Card implements Serializable {
     @Property(nameInDb = "FOLDER")
     private String folder;
 
+    @Property(nameInDb = "REMARK")
+    private String remark;
+
     private int isCollect;
 
-    @Generated(hash = 945881902)
-    public Card(Long id, String name, @NotNull String account,
-                @NotNull String password, String webUrl, String folder, int isCollect) {
+    @Generated(hash = 1262416488)
+    public Card(Long id, String name, @NotNull String account, @NotNull String password,
+            String webUrl, String folder, String remark, int isCollect) {
         this.id = id;
         this.name = name;
         this.account = account;
         this.password = password;
         this.webUrl = webUrl;
         this.folder = folder;
+        this.remark = remark;
         this.isCollect = isCollect;
     }
 
@@ -112,6 +116,14 @@ public class Card implements Serializable {
         this.folder = folder;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
@@ -121,6 +133,7 @@ public class Card implements Serializable {
                 ", password='" + password + '\'' +
                 ", webUrl='" + webUrl + '\'' +
                 ", folder='" + folder + '\'' +
+                ", remark='" + remark + '\'' +
                 ", isCollect=" + isCollect +
                 '}';
     }

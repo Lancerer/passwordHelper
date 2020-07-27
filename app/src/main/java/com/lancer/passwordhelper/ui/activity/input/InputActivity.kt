@@ -48,7 +48,6 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         binding.inputSaveIv.setOnClickListener(this)
         binding.inputEnableIv.setOnClickListener(this)
 
-        //spinner默认选中第一项
         binding.inputSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
@@ -61,7 +60,6 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
             ) {
                 if (isInit()) {
                     folder = mSpinnerAdapter.getItem(position)
-                    folder?.showToast()
                 }
             }
 
@@ -69,6 +67,10 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
     }
 
     override fun initData() {
+        if (intent.getSerializableExtra("list") != null) {
+            val card: Card = intent.getSerializableExtra("list") as Card
+            binding.viewModel = card
+        }
         viewModel.getCategoryList()
         viewModel.spinnerDataList.observe(this, Observer {
             val list = ArrayList<String>()
@@ -136,6 +138,7 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         card.account = account
         card.password = password
         card.webUrl = link
+        card.remark = remark
         card.isCollect = 0
         if (name.isNullOrEmpty()) {
             card.name = account

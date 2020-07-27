@@ -16,7 +16,7 @@ class DaoManager() {
      * 插入card
      */
     fun insertCard(card: Card): Boolean {
-        return BaseApplication.instance.getDaoSession().cardDao.insert(card) != -1L
+        return BaseApplication.instance.getDaoSession().cardDao.insertOrReplace(card) != -1L
     }
 
     /**
@@ -64,6 +64,7 @@ class DaoManager() {
     /**
      * 更新category
      */
+    //TODO update 方法有问题
     fun updateCategory(category: Category) {
         BaseApplication.instance.getDaoSession().categoryDao.update(category)
     }

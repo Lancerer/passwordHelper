@@ -1,5 +1,8 @@
 package com.lancer.passwordhelper.utils
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import com.lancer.passwordhelper.BaseApplication
@@ -41,4 +44,15 @@ object CommonUtils {
      * 判断手机是否安装了微博。
      * */
     fun isWeiboInstalled() = isInstalled("com.sina.weibo")
+
+
+    /**
+     * 将textView内容复制到姐剪切板
+     */
+    fun setTextToClipboard(text: String) {
+        val cmb: ClipboardManager =
+            BaseApplication.instance.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText(null, text)
+        cmb.setPrimaryClip(clipData)
+    }
 }

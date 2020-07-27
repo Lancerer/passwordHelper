@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.lancer.passwordhelper.bean.Card" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,6 +71,7 @@
                 android:id="@+id/edit_account_tv"
                 style="@style/EditTextViewStyle_black"
                 android:layout_marginTop="5dp"
+                android:text="@{viewModel.account}"
                 app:layout_constraintTop_toBottomOf="@id/edit_account_hint_tv"
                 tools:ignore="MissingConstraints"
                 tools:text="18777777777" />
@@ -97,6 +101,7 @@
                 style="@style/EditTextViewStyle_black"
                 android:layout_marginTop="5dp"
                 android:inputType="textPassword"
+                android:text="@{viewModel.password}"
                 app:layout_constraintTop_toBottomOf="@id/edit_password_hint_tv"
                 tools:ignore="MissingConstraints"
                 tools:text="18777777777" />
@@ -132,6 +137,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
+                android:text="@{viewModel.webUrl}"
                 android:id="@+id/edit_link_tv"
                 style="@style/EditTextViewStyle_black"
                 android:layout_marginTop="5dp"
@@ -160,6 +166,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
+                android:text="@{viewModel.remark}"
                 android:id="@+id/edit_remark_tv"
                 style="@style/EditTextViewStyle_black"
                 android:layout_marginTop="5dp"

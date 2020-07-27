@@ -30,7 +30,8 @@ public class CardDao extends AbstractDao<Card, Long> {
         public final static Property Password = new Property(3, String.class, "password", false, "PASSWORD");
         public final static Property WebUrl = new Property(4, String.class, "webUrl", false, "WEB_URL");
         public final static Property Folder = new Property(5, String.class, "folder", false, "FOLDER");
-        public final static Property IsCollect = new Property(6, int.class, "isCollect", false, "IS_COLLECT");
+        public final static Property Remark = new Property(6, String.class, "remark", false, "REMARK");
+        public final static Property IsCollect = new Property(7, int.class, "isCollect", false, "IS_COLLECT");
     }
 
 
@@ -52,7 +53,8 @@ public class CardDao extends AbstractDao<Card, Long> {
                 "\"PASSWORD\" TEXT NOT NULL ," + // 3: password
                 "\"WEB_URL\" TEXT," + // 4: webUrl
                 "\"FOLDER\" TEXT," + // 5: folder
-                "\"IS_COLLECT\" INTEGER NOT NULL );"); // 6: isCollect
+                "\"REMARK\" TEXT," + // 6: remark
+                "\"IS_COLLECT\" INTEGER NOT NULL );"); // 7: isCollect
     }
 
     /** Drops the underlying database table. */
@@ -86,7 +88,12 @@ public class CardDao extends AbstractDao<Card, Long> {
         if (folder != null) {
             stmt.bindString(6, folder);
         }
-        stmt.bindLong(7, entity.getIsCollect());
+ 
+        String remark = entity.getRemark();
+        if (remark != null) {
+            stmt.bindString(7, remark);
+        }
+        stmt.bindLong(8, entity.getIsCollect());
     }
 
     @Override
@@ -114,7 +121,12 @@ public class CardDao extends AbstractDao<Card, Long> {
         if (folder != null) {
             stmt.bindString(6, folder);
         }
-        stmt.bindLong(7, entity.getIsCollect());
+ 
+        String remark = entity.getRemark();
+        if (remark != null) {
+            stmt.bindString(7, remark);
+        }
+        stmt.bindLong(8, entity.getIsCollect());
     }
 
     @Override
@@ -131,7 +143,8 @@ public class CardDao extends AbstractDao<Card, Long> {
             cursor.getString(offset + 3), // password
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // webUrl
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // folder
-            cursor.getInt(offset + 6) // isCollect
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // remark
+            cursor.getInt(offset + 7) // isCollect
         );
         return entity;
     }
@@ -144,7 +157,8 @@ public class CardDao extends AbstractDao<Card, Long> {
         entity.setPassword(cursor.getString(offset + 3));
         entity.setWebUrl(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setFolder(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setIsCollect(cursor.getInt(offset + 6));
+        entity.setRemark(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setIsCollect(cursor.getInt(offset + 7));
      }
     
     @Override

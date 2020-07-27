@@ -7,7 +7,6 @@ import com.lancer.passwordhelper.bean.Category
 import com.lancer.passwordhelper.model.MainRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class CategoryViewModel(private val repository: MainRepository) : ViewModel() {
 
