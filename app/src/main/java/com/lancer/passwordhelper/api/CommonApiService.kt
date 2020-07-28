@@ -1,9 +1,7 @@
 package com.lancer.passwordhelper.api
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  *
@@ -15,17 +13,19 @@ interface CommonApiService {
     /**
      * 登录请求
      */
+    @FormUrlEncoded
     @POST("user/login")
-    fun login(@Body username: String, @Body password: String): Call<BaseResponse<LoginBean>>
+    fun login(@Field("username") username: String, @Field("password") password: String): Call<BaseResponse<LoginBean>>
 
     /**
      * 注册请求
      */
+    @FormUrlEncoded
     @POST("user/register")
     fun register(
-        @Body username: String,
-        @Body password: String,
-        @Body rePassword: String
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("repassword") rePassword: String
     ): Call<BaseResponse<LoginBean>>
 
     //TODO cookie持久化验证
