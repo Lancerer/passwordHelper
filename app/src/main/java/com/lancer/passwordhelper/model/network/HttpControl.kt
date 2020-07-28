@@ -36,7 +36,7 @@ class HttpControl {
         //默认连接超时时间
         const val DEFAULT_CONNECT_TIME_OUT_SECOND = 30
 
-        const val BASE_URL = "http://baobab.kaiyanapp.com/"
+        const val BASE_URL = "https://www.wanandroid.com/"
 
         fun getInstance(baseUrl: String): HttpControl {
             return HttpControl(baseUrl, getOkHttpClient())

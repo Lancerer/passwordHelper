@@ -29,8 +29,24 @@ class MainRepository(
         list
     }
 
-    suspend fun deleteCard(card: Card)= withContext(Dispatchers.IO){
+    suspend fun deleteCard(card: Card) = withContext(Dispatchers.IO) {
         daoManager.deleteCard(card)
+    }
+
+    suspend fun login(username: String, password: String) = withContext(Dispatchers.IO) {
+        val response = mainNetWork.fetchLogin(username, password)
+        response
+    }
+
+    suspend fun register(username: String, password: String, rePassword: String) =
+        withContext(Dispatchers.IO) {
+            val response = mainNetWork.fetchRegister(username, password, rePassword)
+            response
+        }
+
+    suspend fun loginOut() = withContext(Dispatchers.IO) {
+        val response = mainNetWork.fetchLoginOut()
+        response
     }
 
 

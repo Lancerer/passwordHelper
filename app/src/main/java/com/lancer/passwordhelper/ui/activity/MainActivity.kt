@@ -6,6 +6,9 @@ import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.ActivityMainBinding
 import com.lancer.passwordhelper.ui.activity.login.RegisterActivity
+import okhttp3.*
+import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     init {
@@ -21,4 +24,44 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initLayout(): Int = R.layout.activity_main
+
+
+    //okHttp同步请求
+    private fun execute() {
+        val client = OkHttpClient.Builder()
+            .readTimeout(5000L, TimeUnit.SECONDS)
+            .writeTimeout(5000L, TimeUnit.SECONDS)
+            .build()
+        val request = Request.Builder()
+            .get()
+            .url("http://www.baidu.com")
+            .build()
+
+        val call = client.newCall(request)
+
+        val response = call.execute()
+    }
+
+    //okHttp异步请求
+    private fun enqueue() {
+        val client = OkHttpClient.Builder()
+            .readTimeout(5000L, TimeUnit.SECONDS)
+            .writeTimeout(5000L, TimeUnit.SECONDS)
+            .build()
+        val request = Request.Builder()
+            .post(RequestBody.create(MediaType.get("text/pain"), ""))
+            .url("http://www.baidu.com")
+            .build()
+
+        val call = client.newCall(request)
+
+        call.enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+            }
+
+        })
+    }
 }
