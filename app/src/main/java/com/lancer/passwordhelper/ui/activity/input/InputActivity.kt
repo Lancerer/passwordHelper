@@ -1,5 +1,7 @@
 package com.lancer.passwordhelper.ui.activity.input
 
+import android.app.Activity
+import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
@@ -30,6 +32,8 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
     private var folder: String? = null
 
     private var hasSee: Boolean = false
+
+    private var card: Card = Card()
 
     private lateinit var mSpinnerAdapter: ArrayAdapter<String>
     fun isInit() = ::mSpinnerAdapter.isInitialized
@@ -67,10 +71,13 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
     }
 
     override fun initData() {
+        //接收从EditActivity传递过来的数据
         if (intent.getSerializableExtra("list") != null) {
-            val card: Card = intent.getSerializableExtra("list") as Card
-            binding.viewModel = card
+            val data: Card = intent.getSerializableExtra("list") as Card
+            this.card = data
+            binding.viewModel = data
         }
+
         viewModel.getCategoryList()
         viewModel.spinnerDataList.observe(this, Observer {
             val list = ArrayList<String>()
@@ -120,7 +127,6 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
                 negativeButton(R.string.cancel)
             }
         } else {
-            //TODO
             finish()
         }
     }
@@ -133,26 +139,31 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
             getString(R.string.register_null_hint).showToast()
             return
         }
-        //名称为空的情况
-        val card = Card()
-        card.account = account
-        card.password = password
-        card.webUrl = link
-        card.remark = remark
-        card.isCollect = 0
-        if (name.isNullOrEmpty()) {
-            card.name = account
-        } else {
-            card.name = name
+        card.let { card ->
+            //名称为空的情况
+            card.account = account
+            card.password = password
+            card.webUrl = link
+            card.remark = remark
+            card.isCollect = 0
+            if (name.isNullOrEmpty()) {
+                card.name = account
+            } else {
+                card.name = name
+            }
+            if (folder.isNullOrEmpty()) {
+                card.folder = "默认"
+            } else {
+                card.folder = folder
+            }
+            viewModel.saveCard(card)
+            getString(R.string.input_save_success).showToast()
+            val intent = Intent()
+            intent.putExtra("card", card)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
         }
-        if (folder.isNullOrEmpty()) {
-            card.folder = "默认"
-        } else {
-            card.folder = folder
-        }
-        viewModel.saveCard(card)
-        getString(R.string.input_save_success).showToast()
-        finish()
+
 
     }
 

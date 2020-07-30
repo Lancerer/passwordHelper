@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
+import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseActivity
@@ -46,6 +47,15 @@ class EditActivity : BaseActivity<ActivityEditBinding>(), View.OnClickListener {
         }
     }
 
+    //接收从input中修改过的内容
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (data != null && data.extras != null) {
+            val card = data.getSerializableExtra("card") as Card
+            binding.viewModel = card
+        }
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.edit_edit_iv -> {
@@ -53,7 +63,7 @@ class EditActivity : BaseActivity<ActivityEditBinding>(), View.OnClickListener {
                 if (card != null) {
                     val intent = Intent(this@EditActivity, InputActivity::class.java)
                     intent.putExtra("list", card)
-                    startActivity(intent)
+                    startActivityForResult(intent, Constant.EDIT_ACTIVITY_REQUEST_CODE)
                 }
             }
             R.id.edit_delete_iv -> {

@@ -15,6 +15,9 @@ object Constant {
 
     const val HAS_INIT_DATABASE = "has_init_database"
 
+    const val EDIT_ACTIVITY_REQUEST_CODE = 1
+    const val HOME_FRAGMENT_REQUEST_CODE = 2
+
 
     //换肤颜色
     const val DEFAULT = ""

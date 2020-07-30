@@ -25,7 +25,8 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
         Log.w(baseTag, "onCreate")
         binding = DataBindingUtil.setContentView(this, initLayout())
         setStatusBarColor()
-
+        initView()
+        initData()
     }
 
     override fun onStart() {
@@ -37,8 +38,7 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Log.w(baseTag, "onResume")
-        initView()
-        initData()
+
     }
 
     override fun onPause() {

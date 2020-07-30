@@ -49,6 +49,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun initData() {
         if (AppPrefsUtils.getString(Constant.CURRENT_USERNAME).isNotEmpty()) {
             binding.loginUsernameEt.setText(AppPrefsUtils.getString(Constant.CURRENT_USERNAME))
+            binding.loginPasswordEt.setText(AppPrefsUtils.getString(Constant.CURRENT_PASSWORD))
         }
 
         viewModel.isLoginSuccess.observe(this, Observer { success ->
