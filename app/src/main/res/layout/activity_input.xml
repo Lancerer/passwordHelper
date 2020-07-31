@@ -163,8 +163,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="30dp"
-                    android:entries="@array/category"
-                    android:spinnerMode="dropdown"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/input_link_et" />
 

@@ -7,10 +7,10 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.SimpleAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
+import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseActivity
@@ -33,9 +33,17 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
 
     private var hasSee: Boolean = false
 
-    private var card: Card = Card()
+    private var currentCard: Card? = Card()
 
     private lateinit var mSpinnerAdapter: ArrayAdapter<String>
+
+    private val dataList = ArrayList<String>().apply {
+        add("默认")
+        add("娱乐")
+        add("办公")
+        add("教育")
+    }
+
     fun isInit() = ::mSpinnerAdapter.isInitialized
 
     private val viewModel by lazy {
@@ -52,6 +60,11 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         binding.inputSaveIv.setOnClickListener(this)
         binding.inputEnableIv.setOnClickListener(this)
 
+        mSpinnerAdapter =
+            ArrayAdapter(this@InputActivity, android.R.layout.simple_list_item_1, dataList)
+        mSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.inputSpinner.adapter = mSpinnerAdapter
+
         binding.inputSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
@@ -62,9 +75,7 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
                 position: Int,
                 id: Long
             ) {
-                if (isInit()) {
-                    folder = mSpinnerAdapter.getItem(position)
-                }
+                folder = mSpinnerAdapter.getItem(position)
             }
 
         }
@@ -72,21 +83,19 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
 
     override fun initData() {
         //接收从EditActivity传递过来的数据
-        if (intent.getSerializableExtra("list") != null) {
-            val data: Card = intent.getSerializableExtra("list") as Card
-            this.card = data
-            binding.viewModel = data
+        if (intent.getSerializableExtra(Constant.PUT_EXTRA_NAME) != null) {
+            currentCard = intent.getSerializableExtra(Constant.PUT_EXTRA_NAME) as Card
+            binding.viewModel = currentCard
         }
 
         viewModel.getCategoryList()
+
         viewModel.spinnerDataList.observe(this, Observer {
-            val list = ArrayList<String>()
+            dataList.clear()
             for (category in it) {
-                list.add(category.categoryName)
+                dataList.add(category.categoryName)
             }
-            mSpinnerAdapter =
-                ArrayAdapter(this@InputActivity, android.R.layout.simple_list_item_1, list)
-            binding.inputSpinner.adapter = mSpinnerAdapter
+            mSpinnerAdapter.notifyDataSetChanged()
         })
     }
 
@@ -139,7 +148,8 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
             getString(R.string.register_null_hint).showToast()
             return
         }
-        card.let { card ->
+
+        currentCard?.let { card ->
             //名称为空的情况
             card.account = account
             card.password = password
@@ -163,7 +173,6 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
-
 
     }
 

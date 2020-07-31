@@ -18,6 +18,9 @@ object Constant {
     const val EDIT_ACTIVITY_REQUEST_CODE = 1
     const val HOME_FRAGMENT_REQUEST_CODE = 2
 
+    //传递card值intent的flag
+    const val PUT_EXTRA_NAME = "put_extra_name"
+
 
     //换肤颜色
     const val DEFAULT = ""

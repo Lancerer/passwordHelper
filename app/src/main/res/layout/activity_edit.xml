@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.activity.edit.EditActivity">
+        tools:context=".ui.activity.edit.EditDeleteActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/edit_toolbar"
@@ -43,7 +43,7 @@
                 android:layout_height="50dp"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="微博"
+                android:text="@={viewModel.folder}"
                 android:textSize="18sp" />
 
         </RelativeLayout>
@@ -137,10 +137,10 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:text="@={viewModel.webUrl}"
                 android:id="@+id/edit_link_tv"
                 style="@style/EditTextViewStyle_black"
                 android:layout_marginTop="5dp"
+                android:text="@={viewModel.webUrl}"
                 app:layout_constraintTop_toBottomOf="@id/edit_link_hint_tv"
                 tools:ignore="MissingConstraints"
                 tools:text="http://www.baidu.com" />
@@ -166,11 +166,11 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:text="@={viewModel.remark}"
                 android:id="@+id/edit_remark_tv"
                 style="@style/EditTextViewStyle_black"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
+                android:text="@={viewModel.remark}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edit_remark_hint_tv"
                 tools:ignore="MissingConstraints"
