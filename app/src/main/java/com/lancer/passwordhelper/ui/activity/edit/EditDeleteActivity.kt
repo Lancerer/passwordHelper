@@ -1,6 +1,8 @@
 package com.lancer.passwordhelper.ui.activity.edit
 
 import android.content.Intent
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
@@ -20,6 +22,7 @@ class EditDeleteActivity : BaseActivity<ActivityEditBinding>(), View.OnClickList
     }
 
     private var currentCard: Card? = Card()
+    private var hasSee: Boolean = false
 
     private val viewModel by lazy {
         ViewModelProvider(
@@ -34,6 +37,7 @@ class EditDeleteActivity : BaseActivity<ActivityEditBinding>(), View.OnClickList
         binding.editCopyAccountTv.setOnClickListener(this)
         binding.editCopyPasswordTv.setOnClickListener(this)
         binding.editCopyLinkTv.setOnClickListener(this)
+        binding.editEnableIv.setOnClickListener(this)
     }
 
     override fun initData() {
@@ -76,6 +80,9 @@ class EditDeleteActivity : BaseActivity<ActivityEditBinding>(), View.OnClickList
                 CommonUtils.setTextToClipboard(binding.editLinkTv.text.toString())
                 "复制成功".showToast()
             }
+            R.id.edit_enable_iv->{
+                isEnablePwd()
+            }
         }
     }
 
@@ -89,7 +96,22 @@ class EditDeleteActivity : BaseActivity<ActivityEditBinding>(), View.OnClickList
             negativeButton(null, "取消")
         }
     }
-
+    /**
+     * 是否隐藏密码
+     */
+    private fun isEnablePwd() {
+        if (!hasSee) {
+            hasSee = true
+            binding.editEnableIv.setImageResource(R.drawable.ic_password_disable)
+            binding.editPasswordTv.transformationMethod =
+                HideReturnsTransformationMethod.getInstance()
+        } else {
+            binding.editPasswordTv.transformationMethod =
+                PasswordTransformationMethod.getInstance()
+            binding.editEnableIv.setImageResource(R.drawable.ic_password_enable)
+            hasSee = false
+        }
+    }
     override fun initLayout(): Int = R.layout.activity_edit
 
 
