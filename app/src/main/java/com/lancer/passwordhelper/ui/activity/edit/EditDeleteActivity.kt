@@ -4,6 +4,7 @@ import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
 import com.lancer.passwordhelper.Constant
@@ -45,6 +46,9 @@ class EditDeleteActivity : BaseActivity<ActivityEditBinding>(), View.OnClickList
             currentCard = intent.getSerializableExtra(Constant.PUT_EXTRA_NAME) as Card
             binding.viewModel = currentCard
         }
+        viewModel.mExceptionLiveData.observe(this, Observer {
+            it.showToast()
+        })
     }
 
     //接收从input中修改过的内容
@@ -80,7 +84,7 @@ class EditDeleteActivity : BaseActivity<ActivityEditBinding>(), View.OnClickList
                 CommonUtils.setTextToClipboard(binding.editLinkTv.text.toString())
                 "复制成功".showToast()
             }
-            R.id.edit_enable_iv->{
+            R.id.edit_enable_iv -> {
                 isEnablePwd()
             }
         }
@@ -96,6 +100,7 @@ class EditDeleteActivity : BaseActivity<ActivityEditBinding>(), View.OnClickList
             negativeButton(null, "取消")
         }
     }
+
     /**
      * 是否隐藏密码
      */
@@ -112,6 +117,7 @@ class EditDeleteActivity : BaseActivity<ActivityEditBinding>(), View.OnClickList
             hasSee = false
         }
     }
+
     override fun initLayout(): Int = R.layout.activity_edit
 
 

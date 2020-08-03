@@ -4,6 +4,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lancer.passwordhelper.base.BaseViewModel
 import com.lancer.passwordhelper.bean.Card
 import com.lancer.passwordhelper.bean.Category
 import com.lancer.passwordhelper.model.MainRepository
@@ -15,18 +16,27 @@ import kotlinx.coroutines.launch
  * @des
  * @Date 2020/7/22 15:15
  */
-class InputViewModel(private val repository: MainRepository) : ViewModel() {
+class InputViewModel(private val repository: MainRepository) : BaseViewModel() {
 
     val spinnerDataList = MutableLiveData<List<Category>>()
     fun getCategoryList() {
-        viewModelScope.launch(Dispatchers.Main) {
+        launch({
             spinnerDataList.value = repository.getCategoryListFromDataBase()
-        }
+        }, {
+            mExceptionLiveData.value = it
+        }, {
+
+        })
     }
 
     fun saveCard(card: Card) {
-        viewModelScope.launch(Dispatchers.IO) {
+        launch({
             repository.saveCard(card)
-        }
+        }, {
+            mExceptionLiveData.value = it
+        }, {
+
+        })
+
     }
 }

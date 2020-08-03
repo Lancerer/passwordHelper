@@ -1,25 +1,22 @@
 package com.lancer.passwordhelper.base
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lancer.passwordhelper.model.network.exception.ExceptionHandle
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * @author lancer
  * @des
  * @Date 2020/7/31 10:46
  */
-class BaseViewModel : ViewModel() {
-
-    /*
-    launch是CoroutineScope的拓展方法，以下为他的一些参数
-    launch(
-        context: CoroutineContext = EmptyCoroutineContext,
-        start: CoroutineStart = CoroutineStart.DEFAULT,
-        block: suspend CoroutineScope.() -> Unit
-        )*/
+open class BaseViewModel : ViewModel() {
+    /**
+     * 统一异常处理liveData
+     */
+    var mExceptionLiveData: MutableLiveData<String> = MutableLiveData()
 
 
     /**
@@ -32,10 +29,14 @@ class BaseViewModel : ViewModel() {
      */
     fun ViewModel.launch(
         block: suspend CoroutineScope.() -> Unit,
-        onError: (e: Throwable) -> Unit = {},
+        onError: (e: String) -> Unit = {},
         onComplete: () -> Unit = {}
-    ) {
-        viewModelScope.launch(CoroutineExceptionHandler { _, e -> onError(e) }) {
+    ): Job {
+        return viewModelScope.launch(CoroutineExceptionHandler { _, e ->
+            onError(
+                ExceptionHandle.handleException(e)
+            )
+        }) {
             try {
                 block.invoke(this)
             } finally {
@@ -43,4 +44,12 @@ class BaseViewModel : ViewModel() {
             }
         }
     }
+
+    /*
+ launch是CoroutineScope的拓展方法，以下为他的一些参数
+ launch(
+     context: CoroutineContext = EmptyCoroutineContext,
+     start: CoroutineStart = CoroutineStart.DEFAULT,
+     block: suspend CoroutineScope.() -> Unit
+     )*/
 }

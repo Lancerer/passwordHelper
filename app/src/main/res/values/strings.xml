@@ -24,7 +24,7 @@
     <string name="setting_long_click_hint">长按赋值密码或卡号</string>
     <string name="setting_theme_hint">主题颜色</string>
     <string name="setting_tag_hint">标签管理</string>
-    <string name="setting_folder_hint">文件夹管理</string>
+    <string name="setting_folder_hint">类别管理</string>
     <string name="setting_in_out_hint">导入导出</string>
     <string name="setting_share_hint">推荐给好友</string>
     <string name="setting_feedback_hint">意见反馈</string>

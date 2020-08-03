@@ -1,5 +1,6 @@
 package com.lancer.passwordhelper.ui.fragment.setting
 
+import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.FragmentSettingBinding
 import com.lancer.passwordhelper.extension.showToast
+import com.lancer.passwordhelper.ui.activity.setting.FolderActivity
 import com.lancer.passwordhelper.ui.fragment.category.CategoryFragment
 import com.lancer.passwordhelper.utils.SHARE_MORE
 import com.lancer.passwordhelper.utils.ShareUtils
@@ -94,7 +96,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
             }
             R.id.setting_folder_iv, R.id.setting_folder_tv -> {
                 "文件夹".showToast()
-//                startActivity(Intent(activity, FolderActivity::class.java))
+                startActivity(Intent(activity, FolderActivity::class.java))
             }
             R.id.setting_in_out_iv, R.id.setting_in_out_tv -> {
                 "导入导出".showToast()

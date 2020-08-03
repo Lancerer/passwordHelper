@@ -86,6 +86,8 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         if (intent.getSerializableExtra(Constant.PUT_EXTRA_NAME) != null) {
             currentCard = intent.getSerializableExtra(Constant.PUT_EXTRA_NAME) as Card
             binding.viewModel = currentCard
+            //设置选中项
+            binding.inputSpinner.setSelection(mSpinnerAdapter.getPosition(currentCard?.folder))
         }
 
         viewModel.getCategoryList()
