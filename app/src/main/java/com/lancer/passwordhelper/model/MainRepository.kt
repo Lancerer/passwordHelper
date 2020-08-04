@@ -1,6 +1,7 @@
 package com.lancer.passwordhelper.model
 
 import com.lancer.passwordhelper.bean.Card
+import com.lancer.passwordhelper.bean.Category
 import com.lancer.passwordhelper.model.database.DaoManager
 import com.lancer.passwordhelper.model.network.MainNetWorkManager
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +23,11 @@ class MainRepository(
     suspend fun saveCard(card: Card) = withContext(Dispatchers.IO) {
         val insertCard = daoManager.insertCard(card)
         insertCard
+    }
+
+    suspend fun saveCategory(category: Category)= withContext(Dispatchers.IO){
+        val insertCategory = daoManager.insertCategory(category)
+        insertCategory
     }
 
     suspend fun getCardLstFromDataBase() = withContext(Dispatchers.IO) {

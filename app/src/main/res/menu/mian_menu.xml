@@ -11,7 +11,7 @@
         android:title="@string/bottom_name_card" />
     <item
         android:id="@+id/fragment_category"
-        android:icon="@drawable/ic_category"
+        android:icon="@drawable/ic_item_category"
         android:title="@string/bottom_name_category" />
     <item
         android:id="@+id/fragment_setting"

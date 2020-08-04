@@ -41,7 +41,7 @@
         <activity android:name=".ui.activity.input.InputActivity" />
         <activity android:name=".ui.activity.setting.AccountManagementActivity" />
         <activity android:name=".ui.activity.setting.TagActivity" />
-        <activity android:name=".ui.activity.setting.FolderActivity" />
+        <activity android:name=".ui.activity.setting.folder.FolderActivity" />
         <activity android:name=".ui.activity.setting.InOutActivity" />
         <activity android:name=".ui.activity.setting.FeedbackActivity" />
         <activity android:name=".ui.activity.setting.AboutActivity" />

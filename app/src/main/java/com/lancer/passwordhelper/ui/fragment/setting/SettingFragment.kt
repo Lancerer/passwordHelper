@@ -2,18 +2,15 @@ package com.lancer.passwordhelper.ui.fragment.setting
 
 import android.content.Intent
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
-import com.lancer.passwordhelper.BaseApplication
 import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.FragmentSettingBinding
 import com.lancer.passwordhelper.extension.showToast
-import com.lancer.passwordhelper.ui.activity.setting.FolderActivity
-import com.lancer.passwordhelper.ui.fragment.category.CategoryFragment
+import com.lancer.passwordhelper.ui.activity.setting.folder.FolderActivity
 import com.lancer.passwordhelper.utils.SHARE_MORE
 import com.lancer.passwordhelper.utils.ShareUtils
 import skin.support.SkinCompatManager
