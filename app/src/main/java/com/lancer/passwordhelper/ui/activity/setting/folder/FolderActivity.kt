@@ -1,11 +1,15 @@
 package com.lancer.passwordhelper.ui.activity.setting.folder
 
 import android.text.InputType
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
+import com.afollestad.materialdialogs.list.listItems
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
@@ -26,15 +30,24 @@ class FolderActivity : BaseActivity<ActivityFolderBinding>() {
     }
 
     private lateinit var mAdapter: FolderAdapter
+    private val bottomSheetDialog: BottomSheetDialog = BottomSheetDialog(this)
     override fun initView() {
         binding.folderAddFloat.setOnClickListener {
             //点击添加类别
-            addCategory()
+            addCategory("")
         }
         mAdapter = FolderAdapter()
         binding.folderRecycler.adapter = mAdapter
         binding.folderRecycler.layoutManager =
             LinearLayoutManager(this)
+
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            showLogicDialog(view, position)
+        }
+    }
+
+    private fun showLogicDialog(view: View, position: Int) {
+      //TODO
     }
 
 
@@ -49,12 +62,11 @@ class FolderActivity : BaseActivity<ActivityFolderBinding>() {
     }
 
 
-    private fun addCategory() {
-        //MaterialDialog input dialog
+    private fun addCategory(categoryName: String) {
         MaterialDialog(this).show {
             title(R.string.create_category)
             input(
-                hint = "输入你想创建的类别名称",
+                hint = if (categoryName.isEmpty()) "输入你想创建的类别名称" else categoryName,
                 inputType = InputType.TYPE_CLASS_TEXT
             ) { materialDialog, charSequence ->
                 val category = Category()

@@ -3,6 +3,7 @@ package com.lancer.passwordhelper.ui.fragment.category
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
@@ -33,10 +34,8 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
     override fun initData() {
         mAdapter = CategoryAdapter()
         binding.categoryRecycler.adapter = mAdapter
-        binding.categoryRecycler.layoutManager = GridLayoutManager(context, 3)
-        binding.categoryRecycler.addItemDecoration(GridSpaceItemDecoration(3, 20, 20))
-        //TODO 添加ItemDecoration
-
+        binding.categoryRecycler.layoutManager = LinearLayoutManager(context )
+     //   binding.categoryRecycler.addItemDecoration(GridSpaceItemDecoration(3, 20, 20))
         viewModel.requestCategoryList()
         viewModel.dataList.observe(this, Observer {
             mAdapter.setNewInstance(it as MutableList<Category>)
