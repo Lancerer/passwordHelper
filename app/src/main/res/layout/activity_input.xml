@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.lancer.passwordhelper.bean.Card" />
+            type="com.lancer.passwordhelper.model.bean.Card" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

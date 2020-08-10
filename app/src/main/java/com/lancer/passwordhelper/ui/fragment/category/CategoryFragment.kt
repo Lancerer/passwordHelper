@@ -27,13 +27,16 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
     override fun initView() {
         binding.toolbar.title = "分类"
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+
+        }
     }
 
     override fun initData() {
         mAdapter = CategoryAdapter()
         binding.categoryRecycler.adapter = mAdapter
-        binding.categoryRecycler.layoutManager = LinearLayoutManager(context )
-     //   binding.categoryRecycler.addItemDecoration(GridSpaceItemDecoration(3, 20, 20))
+        binding.categoryRecycler.layoutManager = LinearLayoutManager(context)
+        //   binding.categoryRecycler.addItemDecoration(GridSpaceItemDecoration(3, 20, 20))
         viewModel.requestCategoryList()
         viewModel.dataList.observe(this, Observer {
             mAdapter.setNewInstance(it as MutableList<Category>)

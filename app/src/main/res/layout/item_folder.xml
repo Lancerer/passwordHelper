@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.lancer.passwordhelper.bean.Category" />
+            type="com.lancer.passwordhelper.model.bean.Category" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

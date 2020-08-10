@@ -11,7 +11,16 @@ class AccountManagementActivity : BaseActivity<ActivityAccountManagementBinding>
     }
 
     override fun initView() {
-        "AccountManagementActivity".showToast()
+        binding.pwdLl.setOnClickListener {
+
+        }
+
+        binding.clearLl.setOnClickListener {
+
+        }
+        binding.outLl.setOnClickListener {
+
+        }
     }
 
     override fun initData() {
