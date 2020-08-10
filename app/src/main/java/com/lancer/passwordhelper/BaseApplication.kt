@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import androidx.multidex.MultiDex
-import com.lancer.passwordhelper.bean.Category
+import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.model.database.DaoMaster
 import com.lancer.passwordhelper.model.database.DaoSession
 import com.lancer.passwordhelper.utils.AppPrefsUtils

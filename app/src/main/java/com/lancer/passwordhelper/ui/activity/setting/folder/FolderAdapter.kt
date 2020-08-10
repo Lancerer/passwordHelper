@@ -3,9 +3,8 @@ package com.lancer.passwordhelper.ui.activity.setting.folder
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.bean.Category
+import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.databinding.ItemFolderBinding
-import kotlinx.android.synthetic.main.item_folder.view.*
 
 /**
  * @author lancer

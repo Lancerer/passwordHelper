@@ -1,9 +1,8 @@
 package com.lancer.passwordhelper.model.database
 
 import com.lancer.passwordhelper.BaseApplication
-import com.lancer.passwordhelper.bean.Card
-import com.lancer.passwordhelper.bean.Category
-import io.reactivex.Observable
+import com.lancer.passwordhelper.model.bean.Card
+import com.lancer.passwordhelper.model.bean.Category
 
 /**
  * @author lancer

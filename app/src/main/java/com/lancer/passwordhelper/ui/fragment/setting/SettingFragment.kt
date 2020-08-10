@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.listItems
 import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.base.BaseFragment
@@ -46,7 +47,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
 
         binding.settingFingerprintSwitcch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                "勾选上".showToast()
+                showConfirmDialog()
             } else {
                 "未勾选上".showToast()
             }
@@ -58,6 +59,17 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
             } else {
                 "未勾选上".showToast()
             }
+        }
+    }
+
+    private fun showConfirmDialog() {
+        MaterialDialog(requireActivity()).show {
+            title(R.string.input_current_user_pwd)
+            input { materialDialog, charSequence ->
+
+            }
+            negativeButton {  }
+            positiveButton {  }
         }
     }
 

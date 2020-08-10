@@ -2,7 +2,7 @@ package com.lancer.passwordhelper.ui.activity.setting.folder
 
 import androidx.lifecycle.MutableLiveData
 import com.lancer.passwordhelper.base.BaseViewModel
-import com.lancer.passwordhelper.bean.Category
+import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.model.MainRepository
 
 /**

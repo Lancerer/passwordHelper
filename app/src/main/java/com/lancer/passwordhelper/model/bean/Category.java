@@ -1,4 +1,4 @@
-package com.lancer.passwordhelper.bean;
+package com.lancer.passwordhelper.model.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;

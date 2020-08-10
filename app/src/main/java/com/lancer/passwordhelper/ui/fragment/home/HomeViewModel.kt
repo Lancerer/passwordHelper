@@ -4,12 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lancer.passwordhelper.bean.Card
+import com.lancer.passwordhelper.model.bean.Card
 import com.lancer.passwordhelper.extension.showToast
 import com.lancer.passwordhelper.model.MainRepository
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 //TODO 异常处理没加上

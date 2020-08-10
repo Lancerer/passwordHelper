@@ -1,7 +1,7 @@
 package com.lancer.passwordhelper.model
 
-import com.lancer.passwordhelper.bean.Card
-import com.lancer.passwordhelper.bean.Category
+import com.lancer.passwordhelper.model.bean.Card
+import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.model.database.DaoManager
 import com.lancer.passwordhelper.model.network.MainNetWorkManager
 import kotlinx.coroutines.Dispatchers

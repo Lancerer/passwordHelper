@@ -7,13 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
-import com.afollestad.materialdialogs.list.listItems
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.bean.Category
+import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.databinding.ActivityFolderBinding
 import com.lancer.passwordhelper.extension.showToast
 
@@ -30,7 +28,6 @@ class FolderActivity : BaseActivity<ActivityFolderBinding>() {
     }
 
     private lateinit var mAdapter: FolderAdapter
-    private val bottomSheetDialog: BottomSheetDialog = BottomSheetDialog(this)
     override fun initView() {
         binding.folderAddFloat.setOnClickListener {
             //点击添加类别

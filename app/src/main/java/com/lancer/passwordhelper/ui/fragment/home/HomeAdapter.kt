@@ -4,7 +4,7 @@ import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.bean.Card
+import com.lancer.passwordhelper.model.bean.Card
 import com.lancer.passwordhelper.utils.PinYinUtils
 
 /**

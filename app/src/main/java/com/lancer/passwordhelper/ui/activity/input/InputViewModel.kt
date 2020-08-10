@@ -1,15 +1,10 @@
 package com.lancer.passwordhelper.ui.activity.input
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.lancer.passwordhelper.base.BaseViewModel
-import com.lancer.passwordhelper.bean.Card
-import com.lancer.passwordhelper.bean.Category
+import com.lancer.passwordhelper.model.bean.Card
+import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.model.MainRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 /**
  * @author lancer

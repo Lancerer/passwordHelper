@@ -8,7 +8,7 @@ import com.lancer.passwordhelper.Constant.PUT_EXTRA_NAME
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.bean.Card
+import com.lancer.passwordhelper.model.bean.Card
 import com.lancer.passwordhelper.databinding.FragmentHomeBinding
 import com.lancer.passwordhelper.ui.activity.edit.EditDeleteActivity
 import com.lancer.passwordhelper.ui.activity.input.InputActivity

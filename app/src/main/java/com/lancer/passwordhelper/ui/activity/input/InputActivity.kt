@@ -14,7 +14,7 @@ import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseActivity
-import com.lancer.passwordhelper.bean.Card
+import com.lancer.passwordhelper.model.bean.Card
 import com.lancer.passwordhelper.databinding.ActivityInputBinding
 import com.lancer.passwordhelper.extension.showToast
 

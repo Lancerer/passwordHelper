@@ -2,14 +2,12 @@ package com.lancer.passwordhelper.ui.fragment.category
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.bean.Category
+import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.databinding.FragmentCategoryBinding
-import com.lancer.passwordhelper.widget.GridSpaceItemDecoration
 
 
 class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
