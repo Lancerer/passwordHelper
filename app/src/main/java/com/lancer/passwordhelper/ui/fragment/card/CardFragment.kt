@@ -5,6 +5,7 @@ import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.FragmentCardBinding
 import com.lancer.passwordhelper.ui.fragment.category.CategoryFragment
 
+//替换为开眼每日新闻界面
 class CardFragment : BaseFragment<FragmentCardBinding>() {    init {
     name = CardFragment::class.java.simpleName
 }

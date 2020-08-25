@@ -3,6 +3,8 @@ package com.lancer.passwordhelper
 import com.lancer.passwordhelper.model.MainRepository
 import com.lancer.passwordhelper.model.database.DaoManager
 import com.lancer.passwordhelper.model.network.MainNetWorkManager
+import com.lancer.passwordhelper.ui.activity.categoryitem.CategoryItemViewModel
+import com.lancer.passwordhelper.ui.activity.categoryitem.CategoryItemViewModelFactory
 import com.lancer.passwordhelper.ui.activity.edit.EditViewModelFactory
 import com.lancer.passwordhelper.ui.activity.input.InputViewModelFactory
 import com.lancer.passwordhelper.ui.activity.login.LoginViewModelFactory
@@ -37,4 +39,6 @@ object InjectorUtil {
     fun getRegisterViewModelFactory() = RegisterViewModelFactory(getMainRepository())
 
     fun getFolderViewModelFactory() = FolderViewModelFactory(getMainRepository())
+
+    fun getCategoryItemViewModelFactory() = CategoryItemViewModelFactory(getMainRepository())
 }

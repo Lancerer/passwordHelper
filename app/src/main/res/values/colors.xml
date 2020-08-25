@@ -6,5 +6,7 @@
     <color name="color_black">#000000</color>
     <color name="color_white">#ffffff</color>
     <color name="color_gary">#EDEEED</color>
+    <color name="color_orange">#ffff6600</color>
     <color name="windowBackground">#f5f5f5</color>
+    <color name="color_red">#ffce3d3a</color>
 </resources>

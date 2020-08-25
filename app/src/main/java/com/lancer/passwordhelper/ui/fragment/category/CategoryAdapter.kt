@@ -1,5 +1,6 @@
 package com.lancer.passwordhelper.ui.fragment.category
 
+import android.graphics.drawable.Drawable
 import androidx.databinding.DataBindingUtil
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
@@ -14,7 +15,19 @@ import com.lancer.passwordhelper.databinding.ItemCategoryBinding
  */
 class CategoryAdapter(layoutId: Int = R.layout.item_category) :
     BaseQuickAdapter<Category, BaseDataBindingHolder<ItemCategoryBinding>>(layoutId) {
-    override fun onItemViewHolderCreated(viewHolder: BaseDataBindingHolder<ItemCategoryBinding>, viewType: Int) {
+
+    private val colors = arrayListOf(
+        R.drawable.shape_category_fragment_item1,
+        R.drawable.shape_category_fragment_item2,
+        R.drawable.shape_category_fragment_item3,
+        R.drawable.shape_category_fragment_item4,
+        R.drawable.shape_category_fragment_item5
+    )
+
+    override fun onItemViewHolderCreated(
+        viewHolder: BaseDataBindingHolder<ItemCategoryBinding>,
+        viewType: Int
+    ) {
         DataBindingUtil.bind<ItemCategoryBinding>(viewHolder.itemView)
     }
 
@@ -23,6 +36,7 @@ class CategoryAdapter(layoutId: Int = R.layout.item_category) :
         if (dataBinding != null) {
             dataBinding.viewModel = item
             dataBinding.executePendingBindings()
+            dataBinding.itemCategoryNameTv.setBackgroundResource(colors[holder.layoutPosition%colors.size])
         }
     }
 

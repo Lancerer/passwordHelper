@@ -39,6 +39,14 @@ class DaoManager() {
     }
 
     /**
+     * 根据categoryName查询cardList
+     */
+    fun findCardByCategory(categoryName: String): List<Card>? {
+        return BaseApplication.instance.getDaoSession().cardDao.queryBuilder()
+            .where(CardDao.Properties.Folder.eq(categoryName)).list()
+    }
+
+    /**
      * 查询所有card
      */
     fun queryAllCard(): List<Card> {

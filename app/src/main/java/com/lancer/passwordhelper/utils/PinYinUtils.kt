@@ -38,7 +38,7 @@ class PinYinUtils {
          * @return
          */
         private fun getPinYinHead(str: String): Int {
-            var chars: CharArray? = null
+            val chars: CharArray?
             var convert = ""
             for (j in str.indices) {
                 val word = str[j]
@@ -71,7 +71,7 @@ class PinYinUtils {
             if (username.isNotEmpty()) {
                 val type: Int
                 if (username.length >= 2) {
-                    textView.text = username.substring(username.length - 2, username.length)
+                    textView.text = username.substring(0,2)
                     type = getPinYinHead(
                         username.substring(
                             username.length - 2,

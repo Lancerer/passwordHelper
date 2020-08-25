@@ -1,20 +1,28 @@
 package com.lancer.passwordhelper.ui.fragment.setting
 
+import android.app.KeyguardManager
 import android.content.Intent
 import android.graphics.Color
+import android.hardware.fingerprint.FingerprintManager
+import android.os.Build
 import android.view.View
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.listItems
 import com.lancer.passwordhelper.Constant
-import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.R
+import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.databinding.FragmentSettingBinding
 import com.lancer.passwordhelper.extension.showToast
 import com.lancer.passwordhelper.ui.activity.setting.folder.FolderActivity
+import com.lancer.passwordhelper.utils.AppPrefsUtils
+import com.lancer.passwordhelper.utils.FingerPrintUtils
 import com.lancer.passwordhelper.utils.SHARE_MORE
 import com.lancer.passwordhelper.utils.ShareUtils
 import skin.support.SkinCompatManager
+
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickListener {
 
@@ -63,18 +71,35 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
     }
 
     private fun showConfirmDialog() {
-        MaterialDialog(requireActivity()).show {
-            title(R.string.input_current_user_pwd)
-            input { materialDialog, charSequence ->
+        activity?.let {
+            if (FingerPrintUtils.isSupportFingerPrint(it)) {
+                MaterialDialog(it).show {
+                    title(null, "请输入主密码")
+                    input { materialDialog, charSequence ->
+                        if (charSequence.toString() == AppPrefsUtils.getString(Constant.CURRENT_PASSWORD)) {
+                            "开始设置指纹".showToast()
+                            binding.settingFingerprintSwitcch.isChecked = true
 
+                        } else {
+                            "主密码错误，请重试".showToast()
+                            binding.settingFingerprintSwitcch.isChecked = false
+                        }
+                    }
+                    negativeButton(R.string.cancel) { }
+                    positiveButton(R.string.confirm) {
+                        binding.settingFingerprintSwitcch.isChecked = false
+                    }
+                }
+            } else {
+                "您的手机还不支持指纹解锁啊".showToast()
+                binding.settingFingerprintSwitcch.isChecked = false
             }
-            negativeButton {  }
-            positiveButton {  }
         }
     }
 
     override fun initData() {
     }
+
 
     override fun onClick(v: View?) {
         when (v?.id) {

@@ -28,4 +28,12 @@ class FolderViewModel(private val repository: MainRepository) : BaseViewModel() 
 
         })
     }
+
+    fun deleteCategory(category: Category) {
+        launch({
+            repository.deleteCategory(category)
+        }, {
+            mExceptionLiveData.value = it
+        }, {})
+    }
 }

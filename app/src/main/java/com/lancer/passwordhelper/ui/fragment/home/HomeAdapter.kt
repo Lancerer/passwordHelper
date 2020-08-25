@@ -16,7 +16,7 @@ class HomeAdapter(layoutId: Int = R.layout.item_home) :
     BaseQuickAdapter<Card, BaseViewHolder>(layoutId) {
     override fun convert(holder: BaseViewHolder, item: Card) {
 
-        PinYinUtils.setTextBg(holder.getView<TextView>(R.id.item_home_iv),item.name)
+        PinYinUtils.setTextBg(holder.getView(R.id.item_home_iv),item.name)
         holder.setText(R.id.item_home_account_tv, item.account)
         holder.setText(R.id.item_home_name_tv, item.name)
     }

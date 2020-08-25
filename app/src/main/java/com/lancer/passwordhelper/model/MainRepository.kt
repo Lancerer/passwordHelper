@@ -15,19 +15,11 @@ class MainRepository(
     private val daoManager: DaoManager,
     private val mainNetWork: MainNetWorkManager
 ) {
-    suspend fun getCategoryListFromDataBase() = withContext(Dispatchers.IO) {
-        val list = daoManager.queryAllCategory()
-        list
-    }
+
 
     suspend fun saveCard(card: Card) = withContext(Dispatchers.IO) {
         val insertCard = daoManager.insertCard(card)
         insertCard
-    }
-
-    suspend fun saveCategory(category: Category)= withContext(Dispatchers.IO){
-        val insertCategory = daoManager.insertCategory(category)
-        insertCategory
     }
 
     suspend fun getCardLstFromDataBase() = withContext(Dispatchers.IO) {
@@ -35,8 +27,28 @@ class MainRepository(
         list
     }
 
+    suspend fun findCardListByCategoryName(categoryName: String) = withContext(Dispatchers.IO) {
+        val findCardByCategory = daoManager.findCardByCategory(categoryName)
+        findCardByCategory
+    }
+
     suspend fun deleteCard(card: Card) = withContext(Dispatchers.IO) {
         daoManager.deleteCard(card)
+    }
+
+
+    suspend fun saveCategory(category: Category) = withContext(Dispatchers.IO) {
+        val insertCategory = daoManager.insertCategory(category)
+        insertCategory
+    }
+
+    suspend fun getCategoryListFromDataBase() = withContext(Dispatchers.IO) {
+        val list = daoManager.queryAllCategory()
+        list
+    }
+
+    suspend fun deleteCategory(category: Category)= withContext(Dispatchers.IO){
+        daoManager.deleteCategory(category)
     }
 
     suspend fun login(username: String, password: String) = withContext(Dispatchers.IO) {

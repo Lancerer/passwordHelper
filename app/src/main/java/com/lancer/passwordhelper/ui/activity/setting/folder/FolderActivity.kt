@@ -27,6 +27,7 @@ class FolderActivity : BaseActivity<ActivityFolderBinding>() {
         ).get(FolderViewModel::class.java)
     }
 
+    private var dataList = ArrayList<Category>()
     private lateinit var mAdapter: FolderAdapter
     override fun initView() {
         binding.folderAddFloat.setOnClickListener {
@@ -44,7 +45,15 @@ class FolderActivity : BaseActivity<ActivityFolderBinding>() {
     }
 
     private fun showLogicDialog(view: View, position: Int) {
-      //TODO
+        MaterialDialog(this).show {
+            title(null, "是否删除该分类?")
+            positiveButton(R.string.confirm) {
+                //TODO
+                viewModel.deleteCategory(dataList[position])
+                mAdapter.notifyDataSetChanged()
+            }
+            negativeButton(R.string.cancel)
+        }
     }
 
 
@@ -53,7 +62,8 @@ class FolderActivity : BaseActivity<ActivityFolderBinding>() {
             it.showToast()
         })
         viewModel.dataList.observe(this, Observer {
-            mAdapter.setList(it)
+            dataList = it as ArrayList<Category>
+            mAdapter.setList(dataList)
         })
         viewModel.getCategory()
     }
