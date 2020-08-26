@@ -124,6 +124,7 @@ public class Card implements Serializable {
         this.remark = remark;
     }
 
+    @org.jetbrains.annotations.NotNull
     @Override
     public String toString() {
         return "Card{" +

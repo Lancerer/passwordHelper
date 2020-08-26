@@ -1,13 +1,11 @@
 package com.lancer.passwordhelper.ui.fragment.setting
 
-import android.app.KeyguardManager
 import android.content.Intent
 import android.graphics.Color
-import android.hardware.fingerprint.FingerprintManager
-import android.os.Build
+import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricManager.Authenticators
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.listItems
@@ -98,6 +96,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
     }
 
     override fun initData() {
+
     }
 
 

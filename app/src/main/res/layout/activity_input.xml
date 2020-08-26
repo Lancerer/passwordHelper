@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/input_name_et"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -96,7 +96,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/input_account_et"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -109,7 +109,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/input_name_et" />
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/input_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -133,7 +133,7 @@
                     app:layout_constraintLeft_toRightOf="@id/input_password_et"
                     app:layout_constraintTop_toTopOf="@id/input_password_et" />
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/input_link_et"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -166,7 +166,7 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/input_link_et" />
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/input_remark_et"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

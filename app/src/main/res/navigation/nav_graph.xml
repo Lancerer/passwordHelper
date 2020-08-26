@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/fragment_card"
-        android:name="com.lancer.passwordhelper.ui.fragment.card.CardFragment"
+        android:name="com.lancer.passwordhelper.ui.fragment.news.CardFragment"
         android:label="CardFragment" />
     <fragment
         android:id="@id/fragment_category"

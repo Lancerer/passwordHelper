@@ -2,11 +2,15 @@ package com.lancer.passwordhelper.ui.activity.input
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
@@ -33,6 +37,8 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
 
     private var hasSee: Boolean = false
 
+    private var collect: Int = 0
+
     private var currentCard: Card? = Card()
 
     private lateinit var mSpinnerAdapter: ArrayAdapter<String>
@@ -44,8 +50,6 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         add("教育")
     }
 
-    fun isInit() = ::mSpinnerAdapter.isInitialized
-
     private val viewModel by lazy {
         ViewModelProvider(
             this,
@@ -53,6 +57,7 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         ).get(InputViewModel::class.java)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun initView() {
         binding.inputBackIv.setOnClickListener(this)
         binding.inputRandomIv.setOnClickListener(this)
@@ -86,8 +91,15 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         if (intent.getSerializableExtra(Constant.PUT_EXTRA_NAME) != null) {
             currentCard = intent.getSerializableExtra(Constant.PUT_EXTRA_NAME) as Card
             binding.viewModel = currentCard
-            //设置选中项
-            binding.inputSpinner.setSelection(mSpinnerAdapter.getPosition(currentCard?.folder))
+            currentCard?.let {
+                //设置选中项
+                binding.inputSpinner.setSelection(mSpinnerAdapter.getPosition(it.folder))
+                if (it.isCollect == 1) {
+                    collect = it.isCollect
+                    binding.inputLikeIv.setImageResource(R.drawable.ic_liek_select)
+                }
+            }
+
         }
 
         viewModel.getCategoryList()
@@ -113,10 +125,16 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
                 backLogic()
             }
             R.id.input_random_iv -> {
-                //TODO
+                "任意生成一串密码".showToast()
             }
             R.id.input_like_iv -> {
-                //TODO
+                if (collect == 0) {
+                    collect = 1
+                    binding.inputLikeIv.setImageResource(R.drawable.ic_liek_select)
+                } else {
+                    collect = 0
+                    binding.inputLikeIv.setImageResource(R.drawable.ic_like)
+                }
             }
             R.id.input_save_iv -> {
                 saveCard()
@@ -127,9 +145,6 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         }
     }
 
-    /**
-     * 返回逻辑
-     */
     private fun backLogic() {
         if (!name.isNullOrEmpty() || !account.isNullOrEmpty() || !password.isNullOrEmpty() || !link.isNullOrEmpty() || !remark.isNullOrEmpty()) {
             MaterialDialog(this).show {
@@ -142,9 +157,6 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
         }
     }
 
-    /**
-     * 保存密码
-     */
     private fun saveCard() {
         if (account.isNullOrEmpty() || password.isNullOrEmpty()) {
             getString(R.string.register_null_hint).showToast()
@@ -157,7 +169,7 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
             card.password = password
             card.webUrl = link
             card.remark = remark
-            card.isCollect = 0
+            card.isCollect = collect
             if (name.isNullOrEmpty()) {
                 card.name = account
             } else {
@@ -178,9 +190,6 @@ class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener
 
     }
 
-    /**
-     * 是否隐藏密码
-     */
     private fun isEnablePwd() {
         if (!hasSee) {
             hasSee = true

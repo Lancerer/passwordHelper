@@ -118,6 +118,8 @@ dependencies {
     // https://mvnrepository.com/artifact/com.belerweb/pinyin4j
     implementation group: 'com.belerweb', name: 'pinyin4j', version: '2.5.0'
 
+    //biometric 指纹识别
+    implementation 'androidx.biometric:biometric:1.1.0-alpha02'
 }
 //GSYVideoPlayer
 //    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
