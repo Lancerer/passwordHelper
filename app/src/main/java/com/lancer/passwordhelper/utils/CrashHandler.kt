@@ -5,15 +5,21 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Environment
 import android.os.Looper
 import android.os.SystemClock
 import android.util.Log
 import com.lancer.passwordhelper.extension.showToast
+import java.io.FileNotFoundException
+import java.io.IOException
+import java.io.PrintWriter
+import java.io.StringWriter
 import java.lang.reflect.Field
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import kotlin.concurrent.thread
 import kotlin.system.exitProcess
+import java.util.*
 
 
 /**
@@ -108,17 +114,55 @@ object CrashHandler : Thread.UncaughtExceptionHandler {
         for (field in fields) {
             try {
                 field.isAccessible = true
-                //   infos.put(field.name, field.get(null).toString())
+                // infos.put(field.name, field.get(null).toString())
             } catch (e: Exception) {
                 Log.e(TAG, "an error occured when collect crash info", e)
             }
         }
 
     }
-//  TODO
+
+    //  TODO
     // 保存错误信息到文件中
-    private fun saveCrashInfo(e: Throwable): String {
-        return ""
+    private fun saveCrashInfo(ex: Throwable): String? {
+        val stringBuffer = StringBuffer()
+        //获得设备信息
+        for (entry in infos.entries) {
+            val key = entry.key
+            val value = entry.value
+            stringBuffer.append("$key=$value\n")
+        }
+        //获得错误信息
+        val writer = StringWriter()
+        val printWriter = PrintWriter("")
+        ex.printStackTrace(printWriter)
+        var cause = ex.cause
+        while (cause != null) {
+            cause.printStackTrace(printWriter)
+            cause = ex.cause
+        }
+        printWriter.close()
+        val result = writer.toString()
+        stringBuffer.append(result)
+
+        //写入文件
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.CHINA)
+        val rootPath = Environment.getExternalStorageDirectory().absolutePath
+        val crashFileName: String =
+            "${rootPath}/crash_${simpleDateFormat.format(Date())}.log"
+        try {
+            val fos = java.io.FileOutputStream(crashFileName)
+            fos.write(stringBuffer.toString().toByteArray())
+            fos.close()
+            return crashFileName
+        } catch ( e: FileNotFoundException) {
+            Log.e(TAG, "an FileNotFoundException occured when write crashfile to sdcard", e)
+            e.printStackTrace()
+        } catch ( e: IOException) {
+            Log.e(TAG, "an IOException occured when write crashfile to sdcard", e)
+            e.printStackTrace()
+        }
+        return null
     }
 
     private fun writeToFile(content: String): String {

@@ -1,7 +1,5 @@
 package com.lancer.passwordhelper.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.databinding.ActivitySplashBinding

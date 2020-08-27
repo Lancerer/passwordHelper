@@ -6,10 +6,13 @@ import android.util.Log
 import android.view.View
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.listItems
 import com.lancer.passwordhelper.Constant
+import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.databinding.FragmentSettingBinding
@@ -24,6 +27,15 @@ import skin.support.SkinCompatManager
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickListener {
 
+
+    //TODO 为什么要这样写
+    private val viewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(SettingViewModel::class.java)
+    }
+
     init {
         name = SettingFragment::class.java.simpleName
     }
@@ -32,8 +44,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
         binding.settingToolbar.title = getString(R.string.bottom_name_setting)
         binding.settingToolbar.setTitleTextColor(Color.BLACK)
 
-        binding.settingAccountManagementIv.setOnClickListener(this)
-        binding.settingAccountManagementTv.setOnClickListener(this)
         binding.settingThemeIv.setOnClickListener(this)
         binding.settingThemeTv.setOnClickListener(this)
         binding.settingTagIv.setOnClickListener(this)
@@ -96,7 +106,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
     }
 
     override fun initData() {
-
+        binding.viewModel = viewModel
     }
 
 

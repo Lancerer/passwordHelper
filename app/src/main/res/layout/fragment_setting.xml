@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.lancer.passwordhelper.ui.fragment.setting.SettingViewModel" />
     </data>
 
     <LinearLayout
@@ -40,6 +42,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:contentDescription="@string/setting_account_management_hint"
+                        android:onClick="@{(view)->viewModel.onClick(view)}"
                         android:src="@drawable/ic_home"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +51,7 @@
                         android:id="@+id/setting_account_management_tv"
                         style="@style/SettingTextViewStyle"
                         android:text="@string/setting_account_management_hint"
+                        android:onClick="@{(view)->viewModel.onClick(view)}"
                         app:layout_constraintBottom_toBottomOf="@id/setting_account_management_iv"
                         app:layout_constraintLeft_toRightOf="@id/setting_account_management_iv"
                         app:layout_constraintTop_toTopOf="@id/setting_account_management_iv" />

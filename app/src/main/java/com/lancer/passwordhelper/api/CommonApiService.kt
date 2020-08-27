@@ -4,9 +4,9 @@ import retrofit2.Call
 import retrofit2.http.*
 
 /**
- *
- *created by Lancer on 2020/7/18
- *desc
+ * @author lancer
+ * @des 请求接口定义
+ * @Date
  */
 interface CommonApiService {
 
@@ -15,7 +15,10 @@ interface CommonApiService {
      */
     @FormUrlEncoded
     @POST("user/login")
-    fun login(@Field("username") username: String, @Field("password") password: String): Call<BaseResponse<LoginBean>>
+    fun login(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): Call<BaseResponse<LoginBean>>
 
     /**
      * 注册请求

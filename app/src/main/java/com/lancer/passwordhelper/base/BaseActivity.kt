@@ -11,7 +11,7 @@ import com.lancer.passwordhelper.R
 
 abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     protected lateinit var binding: V
-     var baseTag = "base"
+    var baseTag = "base"
 
     /**
      * 换肤框架
@@ -73,5 +73,10 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
     fun start(clz: Class<*>) {
         startActivity(Intent(this, clz))
+    }
+
+    fun startWithFinish(clz: Class<*>) {
+        startActivity(Intent(this, clz))
+        finish()
     }
 }
