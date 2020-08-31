@@ -40,8 +40,7 @@
         <activity android:name=".ui.activity.edit.EditDeleteActivity" />
         <activity
             android:name=".ui.activity.input.InputActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-         />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".ui.activity.setting.AccountManagementActivity" />
         <activity android:name=".ui.activity.setting.TagActivity" />
         <activity android:name=".ui.activity.setting.folder.FolderActivity" />
@@ -54,10 +53,17 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity" />
+        <!--process多进程模式开启，name为进程名，默认进程名是包名-->
+        <activity
+            android:name=".ui.activity.MainActivity">
+
+        </activity>
+
     </application>
 
 </manifest>
