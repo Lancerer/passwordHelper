@@ -1,13 +1,13 @@
 package com.lancer.passwordhelper.ui.activity.setting.folder
 
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
@@ -48,9 +48,9 @@ class FolderActivity : BaseActivity<ActivityFolderBinding>() {
         MaterialDialog(this).show {
             title(null, "是否删除该分类?")
             positiveButton(R.string.confirm) {
-                //TODO
                 viewModel.deleteCategory(dataList[position])
-                mAdapter.notifyDataSetChanged()
+                dataList.removeAt(position)
+                mAdapter.setList(dataList)
             }
             negativeButton(R.string.cancel)
         }
@@ -59,7 +59,7 @@ class FolderActivity : BaseActivity<ActivityFolderBinding>() {
 
     override fun initData() {
         viewModel.mExceptionLiveData.observe(this, Observer {
-            it.showToast()
+            Log.d("TAG", it.toString())
         })
         viewModel.dataList.observe(this, Observer {
             dataList = it as ArrayList<Category>
