@@ -9,4 +9,11 @@
     <color name="color_orange">#ffff6600</color>
     <color name="windowBackground">#f5f5f5</color>
     <color name="color_red">#ffce3d3a</color>
+    <color name="colorTextSecondary">#888888</color>
+    <color name="whiteAlpha80">#33ffffff</color>
+    <color name="blackAlpha70">#4d000000</color>
+    <color name="color_blue">#4687d7</color>
+    <color name="blackAlpha50">#80000000</color>
+    <color name="color_loading">#cdcdcd</color>
+    <color name="colorTextPrimaryDark">#333333</color>
 </resources>
