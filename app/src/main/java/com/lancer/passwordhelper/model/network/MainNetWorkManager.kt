@@ -27,6 +27,8 @@ class MainNetWorkManager {
 
     suspend fun fetchLoginOut() = commonApiService.loginOut().await()
 
+    suspend fun fetchDaily(url: String) = commonApiService.getDaily(url).await()
+
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

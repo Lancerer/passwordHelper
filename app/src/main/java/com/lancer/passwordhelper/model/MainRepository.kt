@@ -47,8 +47,13 @@ class MainRepository(
         list
     }
 
-    suspend fun deleteCategory(category: Category)= withContext(Dispatchers.IO){
+    suspend fun deleteCategory(category: Category) = withContext(Dispatchers.IO) {
         daoManager.deleteCategory(category)
+    }
+
+    suspend fun daily(url: String) = withContext(Dispatchers.IO) {
+        val fetchDaily = mainNetWork.fetchDaily(url)
+        fetchDaily
     }
 
     suspend fun login(username: String, password: String) = withContext(Dispatchers.IO) {

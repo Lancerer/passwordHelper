@@ -12,6 +12,7 @@ import com.lancer.passwordhelper.ui.activity.login.RegisterViewModelFactory
 import com.lancer.passwordhelper.ui.activity.setting.folder.FolderViewModelFactory
 import com.lancer.passwordhelper.ui.fragment.category.CategoryViewModelFactory
 import com.lancer.passwordhelper.ui.fragment.home.HomeViewModelFactory
+import com.lancer.passwordhelper.ui.fragment.news.CardViewModelFactory
 
 /**
  * @author lancer
@@ -41,4 +42,6 @@ object InjectorUtil {
     fun getFolderViewModelFactory() = FolderViewModelFactory(getMainRepository())
 
     fun getCategoryItemViewModelFactory() = CategoryItemViewModelFactory(getMainRepository())
+
+    fun getCardViewModelFactory() = CardViewModelFactory(getMainRepository())
 }

@@ -1,5 +1,6 @@
 package com.lancer.passwordhelper.api
 
+import com.lancer.passwordhelper.model.bean.Daily
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -37,5 +38,11 @@ interface CommonApiService {
      */
     @GET("user/logout/json")
     fun loginOut(): Call<BaseResponse<String>>
+
+    /**
+     * 开眼日报列表
+     */
+    @GET
+    fun getDaily(@Url url:String): Call<Daily>
 
 }
