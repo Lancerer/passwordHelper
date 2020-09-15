@@ -43,6 +43,9 @@ interface CommonApiService {
      * 开眼日报列表
      */
     @GET
-    fun getDaily(@Url url:String): Call<Daily>
+    fun getDaily(@Url url: String): Call<Daily>
+
+    @GET
+    suspend fun getBanner(@Url url: String): Banner
 
 }

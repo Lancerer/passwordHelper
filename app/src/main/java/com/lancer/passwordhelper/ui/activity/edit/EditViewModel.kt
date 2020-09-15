@@ -2,8 +2,8 @@ package com.lancer.passwordhelper.ui.activity.edit
 
 
 import com.lancer.passwordhelper.base.BaseViewModel
-import com.lancer.passwordhelper.model.bean.Card
 import com.lancer.passwordhelper.model.MainRepository
+import com.lancer.passwordhelper.model.bean.Card
 import kotlinx.coroutines.Job
 
 /**

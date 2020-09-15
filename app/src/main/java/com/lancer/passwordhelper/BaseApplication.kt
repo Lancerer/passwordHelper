@@ -12,9 +12,6 @@ import com.lancer.passwordhelper.utils.AppPrefsUtils
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import skin.support.SkinCompatManager
-import skin.support.app.SkinAppCompatViewInflater
-import skin.support.design.app.SkinMaterialViewInflater
 import kotlin.properties.Delegates
 
 
@@ -41,19 +38,18 @@ class BaseApplication : Application() {
         super.onCreate()
         context = applicationContext
         instance = this
-        //   initSkin()
         initDataBase()
     }
 
     /**
      * 初始化换肤矿建
      */
-    private fun initSkin() {
-        SkinCompatManager.withoutActivity(this)
-            .addInflater(SkinAppCompatViewInflater())// 基础控件换肤初始化
-            .addInflater(SkinMaterialViewInflater())// material design 控件换肤初始化[可选]
-            .loadSkin()
-    }
+//    private fun initSkin() {
+//        SkinCompatManager.withoutActivity(this)
+//            .addInflater(SkinAppCompatViewInflater())// 基础控件换肤初始化
+//            .addInflater(SkinMaterialViewInflater())// material design 控件换肤初始化[可选]
+//            .loadSkin()
+//    }
 
     /**
      * 初始化数据库

@@ -15,7 +15,7 @@ class MainRepository(
     private val daoManager: DaoManager,
     private val mainNetWork: MainNetWorkManager
 ) {
-
+    suspend fun getBanner(url: String) = mainNetWork.fetchBanner(url)
 
     suspend fun saveCard(card: Card) = withContext(Dispatchers.IO) {
         val insertCard = daoManager.insertCard(card)

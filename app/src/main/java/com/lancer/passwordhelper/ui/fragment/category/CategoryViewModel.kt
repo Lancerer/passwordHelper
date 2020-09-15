@@ -3,8 +3,8 @@ package com.lancer.passwordhelper.ui.fragment.category
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.model.MainRepository
+import com.lancer.passwordhelper.model.bean.Category
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

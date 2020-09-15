@@ -17,6 +17,8 @@ import com.lancer.passwordhelper.ActionUrl
 import com.lancer.passwordhelper.ActionUrl.process
 import com.lancer.passwordhelper.Const
 import com.lancer.passwordhelper.R
+import com.lancer.passwordhelper.extension.EmptyViewHolder
+import com.lancer.passwordhelper.extension.RecyclerViewHelp
 import com.lancer.passwordhelper.extension.load
 import com.lancer.passwordhelper.model.bean.Daily
 import com.lancer.passwordhelper.model.bean.VideoInfo
@@ -33,13 +35,26 @@ class CardAdapter(fragment: CardFragment) : BaseProviderMultiAdapter<Daily.Item>
         addItemProvider(TextCardViewHeader5ViewHolder(fragment))
         addItemProvider(TextCardViewHeader7ViewHolder(fragment))
         addItemProvider(TextCardViewHeader8ViewHolder(fragment))
+        addItemProvider(EmptyViewHolder())
 
     }
 
     override fun getItemType(data: List<Daily.Item>, position: Int): Int {
-        return 1
+        return RecyclerViewHelp.getItemViewType(data[position])
+
     }
 
+    private inner class EmptyViewHolder:BaseItemProvider<Daily.Item>(){
+        override val itemViewType: Int
+            get() = Const.ItemViewType.UNKNOWN
+        override val layoutId: Int
+            get() = R.layout.layout_deafult_empty_view
+
+        override fun convert(helper: BaseViewHolder, item: Daily.Item) {
+
+        }
+
+    }
     private inner class Banner3ViewHolder(val fragment: CardFragment) :
         BaseItemProvider<Daily.Item>() {
         override val itemViewType: Int
@@ -272,14 +287,15 @@ class CardAdapter(fragment: CardFragment) : BaseProviderMultiAdapter<Daily.Item>
         }
 
     }
-    companion object{
+
+    companion object {
         const val TAG = "CardAdapter"
         const val DEFAULT_LIBRARY_TYPE = "DEFAULT"
         const val NONE_LIBRARY_TYPE = "NONE"
         const val DAILY_LIBRARY_TYPE = "DAILY"
     }
 
-    inner class  InformationCardFollowCardAdapter(
+    inner class InformationCardFollowCardAdapter(
         val activity: Activity,
         val actionUrl: String?,
         val dataList: List<String>

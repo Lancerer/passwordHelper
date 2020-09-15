@@ -1,12 +1,11 @@
 package com.lancer.passwordhelper.ui.activity.login
 
 import androidx.lifecycle.*
-import com.lancer.passwordhelper.api.BaseResponse
-import com.lancer.passwordhelper.api.LoginBean
+import com.lancer.passwordhelper.api.Banner
+import com.lancer.passwordhelper.api.Resource
 import com.lancer.passwordhelper.base.BaseViewModel
 import com.lancer.passwordhelper.model.MainRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.lang.Exception
 
 /**
@@ -23,16 +22,21 @@ class LoginViewModel(private val repository: MainRepository) : BaseViewModel() {
         launch({
             val login = repository.login(username, password)
             isLoginSuccess.value = login.errorCode == 0
-        }, {errorMsg->
+        }, { errorMsg ->
             mExceptionLiveData.value = errorMsg
         }, {
 
         }
         )
+    }
 
-//        viewModelScope.launch(Dispatchers.Main) {
-//
-//        }
+    fun getBanner() = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(repository.getBanner("https://www.wanandroid.com/banner/json")))
+        } catch (e: Exception) {
+            emit(Resource.error(e.message, null))
+        }
     }
 
 //    private fun launch(block: suspend () -> Unit, error: suspend (Throwable) -> Unit) =

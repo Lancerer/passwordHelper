@@ -1,11 +1,15 @@
 package com.lancer.passwordhelper.ui.activity.login
 
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.R
+import com.lancer.passwordhelper.api.Banner
+import com.lancer.passwordhelper.api.Resource
+import com.lancer.passwordhelper.api.Status
 import com.lancer.passwordhelper.databinding.ActivityLoginBinding
 import com.lancer.passwordhelper.extension.showToast
 import com.lancer.passwordhelper.ui.activity.MainActivity
@@ -44,6 +48,24 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             //TODO 使用startActivityForResult
             start(RegisterActivity::class.java)
         }
+        viewModel.getBanner()
+        viewModel.getBanner().observe(this, Observer {
+            it?.let { resource: Resource<out Banner?> ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        resource.data?.let { banner ->
+                            Log.d("lancerr", banner.toString())
+                        }
+                    }
+                    Status.ERROR -> {
+
+                    }
+                    Status.LOADING -> {
+
+                    }
+                }
+            }
+        })
     }
 
     override fun initData() {

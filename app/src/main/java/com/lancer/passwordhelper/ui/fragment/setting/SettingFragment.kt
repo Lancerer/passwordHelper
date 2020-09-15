@@ -22,7 +22,6 @@ import com.lancer.passwordhelper.utils.AppPrefsUtils
 import com.lancer.passwordhelper.utils.FingerPrintUtils
 import com.lancer.passwordhelper.utils.SHARE_MORE
 import com.lancer.passwordhelper.utils.ShareUtils
-import skin.support.SkinCompatManager
 
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickListener {
@@ -117,21 +116,21 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
 //                startActivity(Intent(activity, AccountManagementActivity::class.java))
             }
             R.id.setting_theme_iv, R.id.setting_theme_tv -> {
-                activity?.let {
-                    MaterialDialog(it).show {
-                        title(R.string.setting_theme_hint)
-                        listItems(R.array.themeName) { dialog, index, text ->
-                            if (text == Constant.DEFAULT) {
-                                SkinCompatManager.getInstance().restoreDefaultTheme()
-                            } else {
-                                SkinCompatManager.getInstance().loadSkin(
-                                    text.toString(),
-                                    SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN
-                                )
-                            }
-                        }
-                    }
-                }
+                /*         activity?.let {
+                             MaterialDialog(it).show {
+                                 title(R.string.setting_theme_hint)
+                                 listItems(R.array.themeName) { dialog, index, text ->
+                                     if (text == Constant.DEFAULT) {
+                                         SkinCompatManager.getInstance().restoreDefaultTheme()
+                                     } else {
+                                         SkinCompatManager.getInstance().loadSkin(
+                                             text.toString(),
+                                             SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN
+                                         )
+                                     }
+                                 }
+                             }
+                         }*/
             }
             R.id.setting_tag_iv, R.id.setting_tag_tv -> {
                 "标签管理".showToast()

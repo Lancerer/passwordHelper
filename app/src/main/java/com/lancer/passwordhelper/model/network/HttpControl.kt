@@ -1,6 +1,9 @@
 package com.lancer.passwordhelper.model.network
 
 
+import android.os.Build
+import android.text.TextUtils
+import com.lancer.passwordhelper.BaseApplication
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -67,7 +70,7 @@ class HttpControl {
             //公共请求头
             okHttpBuilder.addInterceptor(HeaderInterceptor())
             //query
-            //  okHttpBuilder.addInterceptor(QueryParameterInterceptor())
+            okHttpBuilder.addInterceptor(QueryParameterInterceptor())
             return okHttpBuilder.build()
         }
 
@@ -101,24 +104,52 @@ class HttpControl {
         }
     }
 
-//    class QueryParameterInterceptor : Interceptor {
-//        override fun intercept(chain: Interceptor.Chain): Response {
-//            val original = chain.request()
-//            val originalHttpUrl = original.url()
-//            val url = originalHttpUrl.newBuilder().apply {
-//                addQueryParameter("vc", GlobalUtil.eyepetizerVersionCode.toString())
-//                addQueryParameter("vn", GlobalUtil.eyepetizerVersionName)
-//                addQueryParameter("size", screenPixel())
-//                addQueryParameter("deviceModel", GlobalUtil.deviceModel)
-//                addQueryParameter("first_channel", GlobalUtil.deviceBrand)
-//                addQueryParameter("last_channel", GlobalUtil.deviceBrand)
-//                addQueryParameter("system_version_code", "${Build.VERSION.SDK_INT}")
-//            }.build()
-//            val request =
-//                original.newBuilder().url(url).method(original.method(), original.body()).build()
-//            return chain.proceed(request)
-//        }
-//
-//    }
+    class QueryParameterInterceptor : Interceptor {
+        private val deviceModel: String
+            get() {
+                var deviceModel = Build.MODEL
+                if (TextUtils.isEmpty(deviceModel)) {
+                    deviceModel = "unknown"
+                }
+                return deviceModel
+            }
+
+        private fun screenPixel(): String {
+            BaseApplication.context.resources.displayMetrics.run {
+                return "${widthPixels}X${heightPixels}"
+            }
+        }
+
+        /**
+         * 获取设备的品牌，如果无法获取到，则返回Unknown。
+         * @return 设备品牌，全部转换为小写格式。
+         */
+        private val deviceBrand: String
+            get() {
+                var deviceBrand = Build.BRAND
+                if (TextUtils.isEmpty(deviceBrand)) {
+                    deviceBrand = "unknown"
+                }
+                return deviceBrand.toLowerCase(Locale.getDefault())
+            }
+
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val original = chain.request()
+            val originalHttpUrl = original.url()
+            val url = originalHttpUrl.newBuilder().apply {
+                addQueryParameter("vc", 6030012.toString())
+                addQueryParameter("vn", "6.3.01")
+                addQueryParameter("size", screenPixel())
+                addQueryParameter("deviceModel", deviceModel)
+                addQueryParameter("first_channel", deviceBrand)
+                addQueryParameter("last_channel", deviceBrand)
+                addQueryParameter("system_version_code", "${Build.VERSION.SDK_INT}")
+            }.build()
+            val request =
+                original.newBuilder().url(url).method(original.method(), original.body()).build()
+            return chain.proceed(request)
+        }
+
+    }
 
 }
