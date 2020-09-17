@@ -48,24 +48,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             //TODO 使用startActivityForResult
             start(RegisterActivity::class.java)
         }
-        viewModel.getBanner()
-        viewModel.getBanner().observe(this, Observer {
-            it?.let { resource: Resource<out Banner?> ->
-                when (resource.status) {
-                    Status.SUCCESS -> {
-                        resource.data?.let { banner ->
-                            Log.d("lancerr", banner.toString())
-                        }
-                    }
-                    Status.ERROR -> {
-
-                    }
-                    Status.LOADING -> {
-
-                    }
-                }
-            }
-        })
     }
 
     override fun initData() {
