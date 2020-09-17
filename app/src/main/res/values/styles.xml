@@ -7,7 +7,7 @@
         <item name="colorControlActivated">#666666</item>
         <item name="android:windowBackground">@color/windowBackground</item>
     </style>
-
+<!--TODO-->
     <style name="FullTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
