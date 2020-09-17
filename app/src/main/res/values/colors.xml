@@ -16,4 +16,7 @@
     <color name="blackAlpha50">#80000000</color>
     <color name="color_loading">#cdcdcd</color>
     <color name="colorTextPrimaryDark">#333333</color>
+    <color name="colorTextPrimary">#444444</color>
+    <color name="colorAccentAlpha60">#6661f2d4</color>
+    <color name="transparent">#00000000</color>
 </resources>

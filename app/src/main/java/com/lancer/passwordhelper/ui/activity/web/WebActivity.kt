@@ -1,15 +1,123 @@
 package com.lancer.passwordhelper.ui.activity.web
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.webkit.*
+import com.lancer.passwordhelper.BaseApplication
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.databinding.ActivityWebBinding
+import com.lancer.passwordhelper.extension.visible
 
 class WebActivity : BaseActivity<ActivityWebBinding>() {
+    private var title: String = ""
+    private var linkUrl: String = ""
+
+    private var isShare: Boolean = false
+
+    private var isTitleFixed: Boolean = false
+
+    private var mode: Int = MODE_DEFAULT
+
     override fun initView() {
+        getBundles()
+        initTitleBar()
+        initWebView()
+        binding.webView.loadUrl(linkUrl)
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun initWebView() {
+        binding.webView.settings.run {
+            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            javaScriptEnabled = true
+            binding.webView.removeJavascriptInterface("searchBoxJavaBridge_")
+            allowContentAccess = true
+            databaseEnabled = true
+            domStorageEnabled = true
+            setAppCacheEnabled(true)
+            savePassword = false
+            saveFormData = false
+            useWideViewPort = true
+            loadWithOverviewMode = true
+            defaultTextEncodingName = "UTF-8"
+            setSupportZoom(true)
+        }
+        binding.webView.webChromeClient = UIWebChromeClient()
+        binding.webView.webViewClient = UIWebViewClient()
+        binding.webView.setDownloadListener { url, _, _, _, _ ->
+            // 调用系统浏览器下载
+            val uri = Uri.parse(url)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
+    }
+
+    private fun initTitleBar() {
+        binding.titleBar.tvTitle
+        if (isShare) binding.titleBar.ivShare.visible()
+
+        binding.titleBar.ivNavigateBefore.setOnClickListener {
+            if (binding.webView.canGoBack()) {
+                binding.webView.goBack()
+            } else {
+                finish()
+            }
+        }
+    }
+
+    private fun getBundles() {
+        title = intent.getStringExtra(TITLE) ?: BaseApplication.context.resources.getString(
+            BaseApplication.context.applicationInfo.labelRes
+        )
+        linkUrl = intent.getStringExtra(LINK_URL) ?: DEFAULT_URL
+        isShare = intent.getBooleanExtra(IS_SHARE, false)
+        isTitleFixed = intent.getBooleanExtra(IS_TITLE_FIXED, false)
+        mode = intent.getIntExtra(PARAM_MODE, MODE_DEFAULT)
+    }
+
+    inner class UIWebViewClient : WebViewClient() {
+        override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
+            Log.d(TAG, "onPageStarted >>> url:${url}")
+            linkUrl = url
+            super.onPageStarted(view, url, favicon)
+            binding.progressBar.visibility = View.VISIBLE
+        }
+
+        override fun onPageFinished(view: WebView, url: String) {
+            Log.d(TAG, "onPageFinished >>> url:${url}")
+            super.onPageFinished(view, url)
+            //    sonicSession?.sessionClient?.pageFinish(url)
+            binding.progressBar.visibility = View.INVISIBLE
+        }
+
+        override fun shouldInterceptRequest(view: WebView?, url: String?): WebResourceResponse? {
+//            if (sonicSession != null) {
+//                val requestResponse = sonicSessionClient?.requestResource(url)
+//                if (requestResponse is WebResourceResponse) return requestResponse
+//            }
+            return null
+        }
+    }
+
+    inner class UIWebChromeClient : WebChromeClient() {
+        override fun onReceivedTitle(view: WebView?, title: String?) {
+            super.onReceivedTitle(view, title)
+            Log.d(TAG, "onReceivedTitle >>> title:${title}")
+            if (!isTitleFixed) {
+                title?.run {
+                    this@WebActivity.title = this
+                    binding.titleBar.tvTitle.text = this
+                }
+            }
+        }
     }
 
     override fun initData() {
@@ -26,15 +134,15 @@ class WebActivity : BaseActivity<ActivityWebBinding>() {
 
         private const val IS_TITLE_FIXED = "isTitleFixed"
 
-//        const val MODE_DEFAULT = 0
+        const val MODE_DEFAULT = 0
 
         const val MODE_SONIC = 1
 
-//        const val MODE_SONIC_WITH_OFFLINE_CACHE = 2
+        const val MODE_SONIC_WITH_OFFLINE_CACHE = 2
 
         const val PARAM_MODE = "param_mode"
 
-//        const val DEFAULT_URL = "https://github.com/VIPyinzhiwei/Eyepetizer"
+        const val DEFAULT_URL = "https://github.com/VIPyinzhiwei/Eyepetizer"
 
 
         /**

@@ -7,10 +7,32 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <merge
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.activity.web.WebActivity">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/titleBar"
+                layout="@layout/layout_common_title_bar" />
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </merge>
 </layout>

@@ -13,15 +13,14 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseProviderMultiAdapter
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.lancer.passwordhelper.ActionUrl
 import com.lancer.passwordhelper.ActionUrl.process
 import com.lancer.passwordhelper.Const
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.extension.EmptyViewHolder
 import com.lancer.passwordhelper.extension.RecyclerViewHelp
 import com.lancer.passwordhelper.extension.load
 import com.lancer.passwordhelper.model.bean.Daily
 import com.lancer.passwordhelper.model.bean.VideoInfo
+import com.lancer.passwordhelper.ui.activity.video.VideoActivity
 import com.lancer.passwordhelper.ui.activity.video.VideoActivity.Companion.start
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
@@ -132,8 +131,7 @@ class CardAdapter(fragment: CardFragment) : BaseProviderMultiAdapter<Daily.Item>
                     CardFragment.activity?.let { start(it, id) }
                 } else {
                     CardFragment.activity?.let {
-                        start(
-                            it, VideoInfo(
+                        start(it, VideoInfo(
                                 id,
                                 playUrl,
                                 title,

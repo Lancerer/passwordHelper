@@ -2,4 +2,5 @@
 <resources>
     <dimen name="listSpaceSize">14dp</dimen>
     <dimen name="coverSize">183dp</dimen>
+    <dimen name="actionBarSize">48dp</dimen>
 </resources>

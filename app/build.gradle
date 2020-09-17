@@ -107,13 +107,14 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:input:3.3.0'
     // GreenDao
     implementation 'org.greenrobot:greendao:3.3.0'
-
-    // skin-support
-    implementation 'skin.support:skin-support:4.0.5'
-    // skin-support 基础控件支持
-    implementation 'skin.support:skin-support-appcompat:4.0.5'
-    // skin-support-design material design
-    implementation 'skin.support:skin-support-design:4.0.5'
+    //GSYVideoPlayer
+    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
+//    // skin-support
+//    implementation 'skin.support:skin-support:4.0.5'
+//    // skin-support 基础控件支持
+//    implementation 'skin.support:skin-support-appcompat:4.0.5'
+//    // skin-support-design material design
+//    implementation 'skin.support:skin-support-design:4.0.5'
 
     // https://mvnrepository.com/artifact/com.belerweb/pinyin4j
     implementation group: 'com.belerweb', name: 'pinyin4j', version: '2.5.0'
@@ -121,8 +122,7 @@ dependencies {
     //biometric 指纹识别
     implementation 'androidx.biometric:biometric:1.1.0-alpha02'
 }
-//GSYVideoPlayer
-//    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
+
 //viewPager2
 //    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 //photoView
