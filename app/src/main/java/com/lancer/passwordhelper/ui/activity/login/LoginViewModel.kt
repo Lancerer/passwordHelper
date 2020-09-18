@@ -17,6 +17,7 @@ class LoginViewModel(private val repository: MainRepository) : BaseViewModel() {
 
     //TODO
     var isLoginSuccess = MutableLiveData<Boolean>()
+    var isRegisterSuccess = MutableLiveData<Boolean>()
 
     fun login(username: String, password: String) {
         launch({
@@ -30,14 +31,17 @@ class LoginViewModel(private val repository: MainRepository) : BaseViewModel() {
         )
     }
 
-    fun getBanner() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(null))
-        try {
-            emit(Resource.success(repository.getBanner("https://www.wanandroid.com/banner/json")))
-        } catch (e: Exception) {
-            emit(Resource.error(e.message, null))
-        }
+
+    fun register(username: String, password: String) {
+        launch({
+            val register = repository.register(username, password, password)
+            isRegisterSuccess.value = register.errorCode == 0
+
+        }, { errorMsg ->
+            mExceptionLiveData.value = errorMsg
+        }, {})
     }
+}
 
 //    private fun launch(block: suspend () -> Unit, error: suspend (Throwable) -> Unit) =
 //        viewModelScope.launch {
@@ -47,4 +51,3 @@ class LoginViewModel(private val repository: MainRepository) : BaseViewModel() {
 //                error(e)
 //            }
 //        }
-}

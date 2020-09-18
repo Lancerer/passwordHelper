@@ -61,6 +61,7 @@ class MainRepository(
         response
     }
 
+    //TODO 这一步骤有点不同
     suspend fun register(username: String, password: String, rePassword: String) =
         withContext(Dispatchers.IO) {
             val response = mainNetWork.fetchRegister(username, password, rePassword)

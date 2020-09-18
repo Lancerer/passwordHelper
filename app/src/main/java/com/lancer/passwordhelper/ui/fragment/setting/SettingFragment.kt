@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
@@ -22,6 +24,7 @@ import com.lancer.passwordhelper.utils.AppPrefsUtils
 import com.lancer.passwordhelper.utils.FingerPrintUtils
 import com.lancer.passwordhelper.utils.SHARE_MORE
 import com.lancer.passwordhelper.utils.ShareUtils
+import java.util.concurrent.Executor
 
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickListener {
@@ -35,11 +38,14 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
         ).get(SettingViewModel::class.java)
     }
 
+    var isUserFinger: Boolean = AppPrefsUtils.getBoolean(Constant.HAS_USER_FINGER)
+
     init {
         name = SettingFragment::class.java.simpleName
     }
 
     override fun initView() {
+        binding.settingFingerprintSwitcch.isChecked = isUserFinger
         binding.settingToolbar.title = getString(R.string.bottom_name_setting)
         binding.settingToolbar.setTitleTextColor(Color.BLACK)
 
@@ -64,17 +70,11 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
             if (isChecked) {
                 showConfirmDialog()
             } else {
-                "未勾选上".showToast()
+                binding.settingFingerprintSwitcch.isChecked = false
+                AppPrefsUtils.putBoolean(Constant.HAS_USER_FINGER, false)
             }
         }
 
-        binding.settingLongClickSwitcch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                "勾选上".showToast()
-            } else {
-                "未勾选上".showToast()
-            }
-        }
     }
 
     private fun showConfirmDialog() {
@@ -84,24 +84,63 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
                     title(null, "请输入主密码")
                     input { materialDialog, charSequence ->
                         if (charSequence.toString() == AppPrefsUtils.getString(Constant.CURRENT_PASSWORD)) {
-                            "开始设置指纹".showToast()
-                            binding.settingFingerprintSwitcch.isChecked = true
-
+                            setFinger()
                         } else {
                             "主密码错误，请重试".showToast()
                             binding.settingFingerprintSwitcch.isChecked = false
                         }
                     }
-                    negativeButton(R.string.cancel) { }
-                    positiveButton(R.string.confirm) {
-                        binding.settingFingerprintSwitcch.isChecked = false
-                    }
+                    negativeButton(R.string.cancel) {}
+                    positiveButton(R.string.confirm) {}
                 }
             } else {
-                "您的手机还不支持指纹解锁啊".showToast()
                 binding.settingFingerprintSwitcch.isChecked = false
             }
         }
+    }
+
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    private lateinit var executor: Executor
+
+    //录入指纹
+    private fun setFinger() {
+        executor = ContextCompat.getMainExecutor(context)
+        //最终回到AuthenticationCallback获得认证结果
+        biometricPrompt =
+            BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    //认证方式错误
+                    super.onAuthenticationError(errorCode, errString)
+                    Log.d("Authentication", "认证方式错误")
+                    binding.settingFingerprintSwitcch.isChecked = false
+                }
+
+                override fun onAuthenticationFailed() {
+                    //认证方式失败
+                    super.onAuthenticationFailed()
+                    Log.d("Authentication", "认证方式失败")
+                    binding.settingFingerprintSwitcch.isChecked = false
+                }
+
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    //认证方式成功
+                    super.onAuthenticationSucceeded(result)
+                    Log.d("Authentication", "认证方式成功")
+                    binding.settingFingerprintSwitcch.isChecked = true
+                    AppPrefsUtils.putBoolean(Constant.HAS_USER_FINGER, true)
+                }
+            })
+        //弹出验证指纹对话框
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("我的应用的生物识别登录")
+            .setSubtitle("使用您的生物特征凭证登录")
+            .setNegativeButtonText("Use account password")
+            .build()
+
+        //执行方法
+        biometricPrompt.authenticate(promptInfo)
+
     }
 
     override fun initData() {
