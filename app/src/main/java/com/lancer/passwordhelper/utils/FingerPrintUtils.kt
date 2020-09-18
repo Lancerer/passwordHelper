@@ -11,7 +11,9 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import com.bumptech.glide.Glide
+import com.lancer.passwordhelper.extension.showToast
 import java.security.KeyStore
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
@@ -34,22 +36,23 @@ object FingerPrintUtils {
             Toast.makeText(activity, "您的系统版本过低，不支持指纹功能", Toast.LENGTH_SHORT).show();
             return false
         } else {
-
-            //键盘锁管理者
-            val keyguardManager: KeyguardManager =
-                activity.getSystemService(KeyguardManager::class.java)
-            //指纹管理者
-            val fingerprintManager: FingerprintManager =
-                activity.getSystemService(FingerprintManager::class.java)
-            if (!fingerprintManager.isHardwareDetected) {//判断硬件支不支持指纹
-                Toast.makeText(activity, "您的手机不支持指纹功能", Toast.LENGTH_SHORT).show();
-                return false
-            } else if (!keyguardManager.isKeyguardSecure) {//还未设置锁屏
-                Toast.makeText(activity, "您还未设置锁屏，请先设置锁屏并添加一个指纹", Toast.LENGTH_SHORT).show();
-                return false
-            } else if (!fingerprintManager.hasEnrolledFingerprints()) {//指纹未登记
-                Toast.makeText(activity, "您至少需要在系统设置中添加一个指纹", Toast.LENGTH_SHORT).show();
-                return false
+            val biometricManager = BiometricManager.from(activity)
+            when {
+                biometricManager.canAuthenticate(BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS -> {
+                    return true
+                }
+                biometricManager.canAuthenticate(BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
+                    "此设备上没有生物特征".showToast()
+                    return false
+                }
+                biometricManager.canAuthenticate(BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
+                    "目前无法使用生物识别功能".showToast()
+                    return false
+                }
+                biometricManager.canAuthenticate(BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
+                    "用户尚未将任何生物识别凭证与其帐户关联".showToast()
+                    return false
+                }
             }
         }
 
@@ -113,7 +116,7 @@ object FingerPrintUtils {
      * 是否有生物识别注册
      */
     fun hasBiometricEnrolled(context: Context): Boolean {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val bm = BiometricManager.from(context)
             val canAuthenticate = bm.canAuthenticate(Authenticators.BIOMETRIC_WEAK)
             (canAuthenticate == BiometricManager.BIOMETRIC_SUCCESS)

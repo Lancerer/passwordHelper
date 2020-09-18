@@ -14,6 +14,7 @@ object Constant {
     const val HAS_USER = "has_user"
 
     const val HAS_INIT_DATABASE = "has_init_database"
+    const val HAS_USER_FINGER = "has_user_finger"
 
     const val EDIT_ACTIVITY_REQUEST_CODE = 1
     const val HOME_FRAGMENT_REQUEST_CODE = 2
