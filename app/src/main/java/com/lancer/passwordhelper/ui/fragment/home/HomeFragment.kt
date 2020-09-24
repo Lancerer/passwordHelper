@@ -30,6 +30,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         ).get(HomeViewModel::class.java)
     }
 
+    override fun onResume() {
+        super.onResume()
+        initView()
+        initData()
+    }
+
     //TODO 删除数据后界面不更新 和BaseQuickAdapter的方法有关系
     override fun initView() {
         binding.toolbar.title = "主页"
@@ -63,5 +69,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initLayout(): Int = R.layout.fragment_home
-
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.unbind()
+    }
 }

@@ -29,6 +29,12 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
     private var dataList = ArrayList<Category>()
 
+    override fun onResume() {
+        super.onResume()
+        initView()
+        initData()
+    }
+
     override fun initView() {
         binding.toolbar.title = "分类"
         mAdapter = CategoryAdapter()
@@ -52,4 +58,8 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
     override fun initLayout(): Int = R.layout.fragment_category
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.unbind()
+    }
 }
