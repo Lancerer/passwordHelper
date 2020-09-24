@@ -19,6 +19,7 @@ import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.databinding.FragmentSettingBinding
 import com.lancer.passwordhelper.extension.showToast
+import com.lancer.passwordhelper.ui.activity.setting.AccountManagementActivity
 import com.lancer.passwordhelper.ui.activity.setting.folder.FolderActivity
 import com.lancer.passwordhelper.utils.AppPrefsUtils
 import com.lancer.passwordhelper.utils.FingerPrintUtils
@@ -48,11 +49,13 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
         binding.settingFingerprintSwitcch.isChecked = isUserFinger
         binding.settingToolbar.title = getString(R.string.bottom_name_setting)
         binding.settingToolbar.setTitleTextColor(Color.BLACK)
-
+        binding.settingToolbar.setTitleTextColor(Color.BLACK)
+        binding.settingAccountManagementIv.setOnClickListener(this)
+        binding.settingAccountManagementTv.setOnClickListener(this)
         binding.settingThemeIv.setOnClickListener(this)
         binding.settingThemeTv.setOnClickListener(this)
-        binding.settingTagIv.setOnClickListener(this)
-        binding.settingTagTv.setOnClickListener(this)
+//        binding.settingTagIv.setOnClickListener(this)
+//        binding.settingTagTv.setOnClickListener(this)
         binding.settingFolderIv.setOnClickListener(this)
         binding.settingFolderTv.setOnClickListener(this)
         binding.settingInOutIv.setOnClickListener(this)
@@ -151,8 +154,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.setting_account_management_iv, R.id.setting_account_management_tv -> {
-                "主账号管理".showToast()
-//                startActivity(Intent(activity, AccountManagementActivity::class.java))
+                startActivity(Intent(activity, AccountManagementActivity::class.java))
             }
             R.id.setting_theme_iv, R.id.setting_theme_tv -> {
                 /*         activity?.let {
@@ -171,32 +173,29 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
                              }
                          }*/
             }
-            R.id.setting_tag_iv, R.id.setting_tag_tv -> {
-                "标签管理".showToast()
-//                startActivity(Intent(activity, TagActivity::class.java))
-            }
+            /*    R.id.setting_tag_iv, R.id.setting_tag_tv -> {
+                    "标签管理".showToast()
+                    startActivity(Intent(activity, TagActivity::class.java))
+                }*/
             R.id.setting_folder_iv, R.id.setting_folder_tv -> {
                 "文件夹".showToast()
                 startActivity(Intent(activity, FolderActivity::class.java))
             }
             R.id.setting_in_out_iv, R.id.setting_in_out_tv -> {
-                "导入导出".showToast()
+                "导入导出功能".showToast()
 //                startActivity(Intent(activity, InOutActivity::class.java))
-
             }
             R.id.setting_share_iv, R.id.setting_share_tv -> {
                 activity?.let { ShareUtils.share(it, "pwHelper", SHARE_MORE) }
             }
             R.id.setting_feedback_iv, R.id.setting_feedback_tv -> {
                 "反馈".showToast()
-//                startActivity(Intent(activity, FeedbackActivity::class.java))
             }
             R.id.setting_update_iv, R.id.setting_update_tv -> {
                 getString(R.string.no_update_hint).showToast()
             }
             R.id.setting_about_iv, R.id.setting_about_tv -> {
-                "关于".showToast()
-                //  startActivity(Intent(activity, AboutActivity::class.java))
+                "mr.lancer@qq.com".showToast()
             }
             else -> {
                 getString(R.string.unknow).showToast()
