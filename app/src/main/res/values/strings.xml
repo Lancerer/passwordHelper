@@ -45,4 +45,6 @@
     <string name="input_current_user_pwd">请输入主密码</string>
     <string name="advert">广告</string>
     <string name="refresh_commend">刷新推荐</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

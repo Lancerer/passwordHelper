@@ -55,7 +55,8 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.w(name, "onViewCreated")
-
+        initView()
+        initData()
     }
 
 
@@ -68,8 +69,7 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     override fun onResume() {
         super.onResume()
         Log.w(name, "onResume")
-        initView()
-        initData()
+
     }
 
     override fun onPause() {

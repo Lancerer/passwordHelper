@@ -14,12 +14,5 @@ class SettingViewModel : ViewModel() {
 
     }
 
-    fun onClick(view: View) {
-        when (view.id) {
-            R.id.setting_account_management_iv, R.id.setting_account_management_tv -> {
-                "主账号管理".showToast()
-            }
 
-        }
-    }
 }
