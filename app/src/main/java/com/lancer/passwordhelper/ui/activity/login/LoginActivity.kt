@@ -41,7 +41,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun initView() {
         if (!isUserFinger) {
-           login()
+            login()
         } else {
             setFinger()
         }
@@ -49,43 +49,56 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private fun login() {
         binding.loginLoginBt.setOnClickListener {
-            if (!judge()) {
-                return@setOnClickListener
+            if (!AppPrefsUtils.getBoolean(Constant.IS_FIRST_LOGIN)) {
+                if (!judge()) {
+                    return@setOnClickListener
+                } else {
+                    AppPrefsUtils.putString(Constant.CURRENT_USERNAME, username!!)
+                    AppPrefsUtils.putString(Constant.CURRENT_PASSWORD, password!!)
+                    start(MainActivity::class.java)
+                    finish()
+                }
             }
-            viewModel.login(username!!, password!!)
         }
 
-        binding.loginRegisterBt.setOnClickListener {
-            if (!judge()) {
-                return@setOnClickListener
-            }
-            viewModel.register(username!!, password!!)
-        }
-        if (AppPrefsUtils.getString(Constant.CURRENT_USERNAME).isNotEmpty()) {
-            binding.loginUsernameEt.setText(AppPrefsUtils.getString(Constant.CURRENT_USERNAME))
-            binding.loginPasswordEt.setText(AppPrefsUtils.getString(Constant.CURRENT_PASSWORD))
-        }
+        /* binding.loginLoginBt.setOnClickListener {
+             if (!judge()) {
+                 return@setOnClickListener
+             }
+             viewModel.login(username!!, password!!)
+         }
 
-        viewModel.isLoginSuccess.observe(this, Observer { success ->
-            if (success) {
-                AppPrefsUtils.putString(Constant.CURRENT_USERNAME, username!!)
-                AppPrefsUtils.putString(Constant.CURRENT_PASSWORD, password!!)
-                start(MainActivity::class.java)
-                finish()
-            } else {
-                "登陆失败".showToast()
-            }
-        })
-        viewModel.isRegisterSuccess.observe(this, Observer { success ->
-            if (success) {
-                AppPrefsUtils.putString(Constant.CURRENT_USERNAME, username!!)
-                AppPrefsUtils.putString(Constant.CURRENT_PASSWORD, password!!)
-                start(MainActivity::class.java)
-                finish()
-            } else {
-                "登陆失败".showToast()
-            }
-        })
+         binding.loginRegisterBt.setOnClickListener {
+             if (!judge()) {
+                 return@setOnClickListener
+             }
+             viewModel.register(username!!, password!!)
+         }
+         if (AppPrefsUtils.getString(Constant.CURRENT_USERNAME).isNotEmpty()) {
+             binding.loginUsernameEt.setText(AppPrefsUtils.getString(Constant.CURRENT_USERNAME))
+             binding.loginPasswordEt.setText(AppPrefsUtils.getString(Constant.CURRENT_PASSWORD))
+         }
+
+         viewModel.isLoginSuccess.observe(this, Observer { success ->
+             if (success) {
+                 AppPrefsUtils.putString(Constant.CURRENT_USERNAME, username!!)
+                 AppPrefsUtils.putString(Constant.CURRENT_PASSWORD, password!!)
+                 start(MainActivity::class.java)
+                 finish()
+             } else {
+                 "登陆失败".showToast()
+             }
+         })
+         viewModel.isRegisterSuccess.observe(this, Observer { success ->
+             if (success) {
+                 AppPrefsUtils.putString(Constant.CURRENT_USERNAME, username!!)
+                 AppPrefsUtils.putString(Constant.CURRENT_PASSWORD, password!!)
+                 start(MainActivity::class.java)
+                 finish()
+             } else {
+                 "登陆失败".showToast()
+             }
+         })*/
     }
 
     private lateinit var biometricPrompt: BiometricPrompt

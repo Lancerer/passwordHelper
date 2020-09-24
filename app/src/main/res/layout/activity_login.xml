@@ -64,7 +64,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/login_password_et" />
 
-        <Button
+     <!--   <Button
             android:id="@+id/login_register_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/login_login_bt" />
-
+-->
 
         <TextView
             android:id="@+id/login_fingerprint_tv"
