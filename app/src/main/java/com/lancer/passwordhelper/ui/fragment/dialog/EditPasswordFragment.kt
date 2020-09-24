@@ -46,14 +46,14 @@ class EditPasswordFragment : DialogFragment(), View.OnClickListener {
         confirmPd = binding.confirmPasswordEt.text.toString()
         when (v?.id) {
             R.id.cancel_tv -> {
+                this.dismiss()
+            }
+            R.id.confirm_tv -> {
                 if (judge()) {
                     AppPrefsUtils.putString(Constant.CURRENT_PASSWORD, newPd!!)
                     "修改密码成功".showToast()
                     this.dismiss()
                 }
-            }
-            R.id.confirm_tv -> {
-                this.dismiss()
             }
 
         }
