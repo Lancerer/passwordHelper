@@ -45,6 +45,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
         name = SettingFragment::class.java.simpleName
     }
 
+    override fun onResume() {
+        super.onResume()
+        initView()
+        initData()
+    }
+
     override fun initView() {
         binding.settingFingerprintSwitcch.isChecked = isUserFinger
         binding.settingToolbar.title = getString(R.string.bottom_name_setting)
@@ -204,5 +210,8 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(), View.OnClickList
     }
 
     override fun initLayout(): Int = R.layout.fragment_setting
-
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.unbind()
+    }
 }

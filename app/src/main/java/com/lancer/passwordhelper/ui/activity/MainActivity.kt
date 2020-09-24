@@ -5,7 +5,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.databinding.ActivityMainBinding
-import com.lancer.passwordhelper.ui.activity.login.RegisterActivity
 import okhttp3.*
 import java.io.IOException
 import java.util.concurrent.TimeUnit

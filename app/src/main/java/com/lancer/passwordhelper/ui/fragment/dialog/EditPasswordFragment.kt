@@ -51,6 +51,7 @@ class EditPasswordFragment : DialogFragment(), View.OnClickListener {
             R.id.confirm_tv -> {
                 if (judge()) {
                     AppPrefsUtils.putString(Constant.CURRENT_PASSWORD, newPd!!)
+                    AppPrefsUtils.putBoolean(Constant.HAS_EDIT_PASSWORD, true)
                     "修改密码成功".showToast()
                     this.dismiss()
                 }

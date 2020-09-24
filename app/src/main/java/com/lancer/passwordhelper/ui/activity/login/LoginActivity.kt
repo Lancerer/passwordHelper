@@ -48,17 +48,27 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun login() {
+
+        binding.loginUsernameEt.setText(AppPrefsUtils.getString(Constant.CURRENT_USERNAME))
+        if (AppPrefsUtils.getBoolean(Constant.HAS_EDIT_PASSWORD)) {
+            AppPrefsUtils.putBoolean(Constant.HAS_EDIT_PASSWORD, false)
+        } else {
+            binding.loginPasswordEt.setText(AppPrefsUtils.getString(Constant.CURRENT_PASSWORD))
+        }
+
         binding.loginLoginBt.setOnClickListener {
-            if (!AppPrefsUtils.getBoolean(Constant.IS_FIRST_LOGIN)) {
-                if (!judge()) {
-                    return@setOnClickListener
-                } else {
+            if (!judge()) {
+                return@setOnClickListener
+            } else {
+                if (!AppPrefsUtils.getBoolean(Constant.IS_FIRST_LOGIN)) {
                     AppPrefsUtils.putString(Constant.CURRENT_USERNAME, username!!)
                     AppPrefsUtils.putString(Constant.CURRENT_PASSWORD, password!!)
-                    start(MainActivity::class.java)
-                    finish()
+                    AppPrefsUtils.putBoolean(Constant.IS_FIRST_LOGIN, true)
                 }
+                start(MainActivity::class.java)
+                finish()
             }
+
         }
 
         /* binding.loginLoginBt.setOnClickListener {
@@ -154,6 +164,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         if (TextUtils.isEmpty(password) || password?.length!! < 6) {
             "账号不能为空或者账号长度必须大于6".showToast()
             return false
+        }
+        if (AppPrefsUtils.getString(Constant.CURRENT_USERNAME).isNotBlank()) {
+            if (!username.equals(AppPrefsUtils.getString(Constant.CURRENT_USERNAME)) || !password.equals(
+                    AppPrefsUtils.getString(Constant.CURRENT_PASSWORD)
+                )
+            ) {
+                "账号密码错误".showToast()
+                return false
+            }
         }
         return true
 
