@@ -1,12 +1,8 @@
 package com.lancer.passwordhelper.ui.activity.login
 
-import androidx.lifecycle.*
-import com.lancer.passwordhelper.api.Banner
-import com.lancer.passwordhelper.api.Resource
+import androidx.lifecycle.MutableLiveData
 import com.lancer.passwordhelper.base.BaseViewModel
 import com.lancer.passwordhelper.model.MainRepository
-import kotlinx.coroutines.Dispatchers
-import java.lang.Exception
 
 /**
  * @author lancer

@@ -4,7 +4,6 @@
     <string name="login_username">请输入用户名</string>
     <string name="login_password">请输入密码</string>
     <string name="login_login">登录</string>
-    <string name="login_register">注册</string>
     <string name="login_fingerprint">使用指纹识别</string>
     <string name="bottom_name_home">密码</string>
     <string name="bottom_name_card">卡片</string>
@@ -14,11 +13,7 @@
     <string name="empty_view_hint">暂无数据</string>
     <string name="error_view_hint">加载失败</string>
     <string name="no_network_view_hint">网络异常</string>
-    <string name="register_hint">注册PWordHelper</string>
-    <string name="register_register">注册</string>
-    <string name="register_login">已有账号？登录</string>
     <string name="register_null_hint">账号密码不能为空</string>
-    <string name="password_diff_hint">两次输入的密码不一致，请检查</string>
     <string name="setting_account_management_hint">主账号管理</string>
     <string name="setting_spot_hint">生物识别</string>
     <string name="setting_long_click_hint">长按赋值密码或卡号</string>
@@ -42,9 +37,7 @@
     <string name="app_remark">备注</string>
     <string name="app_copy">复制</string>
     <string name="create_category">新建类别</string>
-    <string name="input_current_user_pwd">请输入主密码</string>
     <string name="advert">广告</string>
     <string name="refresh_commend">刷新推荐</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

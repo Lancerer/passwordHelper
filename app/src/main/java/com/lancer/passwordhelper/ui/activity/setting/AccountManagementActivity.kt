@@ -2,15 +2,11 @@ package com.lancer.passwordhelper.ui.activity.setting
 
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.input.input
-import com.lancer.passwordhelper.Constant
-import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
+import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.databinding.ActivityAccountManagementBinding
-import com.lancer.passwordhelper.extension.showToast
 import com.lancer.passwordhelper.ui.activity.login.LoginActivity
 import com.lancer.passwordhelper.ui.fragment.dialog.EditPasswordFragment
-import com.lancer.passwordhelper.utils.AppPrefsUtils
 
 class AccountManagementActivity : BaseActivity<ActivityAccountManagementBinding>(),
     View.OnClickListener {

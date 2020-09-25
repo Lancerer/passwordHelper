@@ -20,7 +20,6 @@ import com.lancer.passwordhelper.extension.RecyclerViewHelp
 import com.lancer.passwordhelper.extension.load
 import com.lancer.passwordhelper.model.bean.Daily
 import com.lancer.passwordhelper.model.bean.VideoInfo
-import com.lancer.passwordhelper.ui.activity.video.VideoActivity
 import com.lancer.passwordhelper.ui.activity.video.VideoActivity.Companion.start
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 

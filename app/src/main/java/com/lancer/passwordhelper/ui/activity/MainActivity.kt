@@ -2,8 +2,8 @@ package com.lancer.passwordhelper.ui.activity
 
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
+import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.databinding.ActivityMainBinding
 import okhttp3.*
 import java.io.IOException

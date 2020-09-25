@@ -1,7 +1,7 @@
 package com.lancer.passwordhelper.ui.activity.setting
 
-import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
+import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.databinding.ActivityTagBinding
 import com.lancer.passwordhelper.extension.showToast
 
