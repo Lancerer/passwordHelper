@@ -1,6 +1,5 @@
 package com.lancer.passwordhelper.ui.fragment.home
 
-import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.lancer.passwordhelper.R

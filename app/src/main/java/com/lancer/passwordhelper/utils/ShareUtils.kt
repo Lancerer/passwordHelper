@@ -2,7 +2,6 @@ package com.lancer.passwordhelper.utils
 
 import android.app.Activity
 import android.content.Intent
-import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.extension.showToast
 
 /**

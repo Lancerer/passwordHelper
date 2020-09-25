@@ -1,9 +1,7 @@
 package com.lancer.passwordhelper.utils
 
 import android.app.Activity
-import android.app.KeyguardManager
 import android.content.Context
-import android.hardware.fingerprint.FingerprintManager
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
@@ -12,7 +10,6 @@ import androidx.annotation.RequiresApi
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
-import com.bumptech.glide.Glide
 import com.lancer.passwordhelper.extension.showToast
 import java.security.KeyStore
 import javax.crypto.Cipher

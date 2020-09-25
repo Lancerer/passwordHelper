@@ -4,17 +4,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.view.View
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricManager.Authenticators
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
-import com.afollestad.materialdialogs.list.listItems
 import com.lancer.passwordhelper.Constant
-import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseFragment
 import com.lancer.passwordhelper.databinding.FragmentSettingBinding

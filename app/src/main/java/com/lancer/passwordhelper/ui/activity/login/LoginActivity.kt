@@ -4,19 +4,14 @@ import android.text.TextUtils
 import android.util.Log
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.api.Banner
-import com.lancer.passwordhelper.api.Resource
-import com.lancer.passwordhelper.api.Status
+import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.databinding.ActivityLoginBinding
 import com.lancer.passwordhelper.extension.showToast
 import com.lancer.passwordhelper.ui.activity.MainActivity
-import com.lancer.passwordhelper.ui.activity.input.InputActivity
 import com.lancer.passwordhelper.utils.AppPrefsUtils
 import java.util.concurrent.Executor
 

@@ -108,7 +108,9 @@ dependencies {
     // GreenDao
     implementation 'org.greenrobot:greendao:3.3.0'
     //GSYVideoPlayer
-    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
+    implementation 'com.shuyu:gsyVideoPlayer-java:7.1.2'
+    implementation 'com.shuyu:gsyVideoPlayer-armv7a:7.1.2'
+    implementation 'com.shuyu:gsyVideoPlayer-arm64:7.1.2'
 //    // skin-support
 //    implementation 'skin.support:skin-support:4.0.5'
 //    // skin-support 基础控件支持

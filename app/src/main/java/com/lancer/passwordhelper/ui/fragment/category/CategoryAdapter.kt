@@ -1,12 +1,11 @@
 package com.lancer.passwordhelper.ui.fragment.category
 
-import android.graphics.drawable.Drawable
 import androidx.databinding.DataBindingUtil
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.model.bean.Category
 import com.lancer.passwordhelper.databinding.ItemCategoryBinding
+import com.lancer.passwordhelper.model.bean.Category
 
 /**
  * @author lancer

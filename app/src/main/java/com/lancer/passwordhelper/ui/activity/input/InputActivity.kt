@@ -6,10 +6,8 @@ import android.os.Build
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,9 +16,9 @@ import com.lancer.passwordhelper.Constant
 import com.lancer.passwordhelper.InjectorUtil
 import com.lancer.passwordhelper.R
 import com.lancer.passwordhelper.base.BaseActivity
-import com.lancer.passwordhelper.model.bean.Card
 import com.lancer.passwordhelper.databinding.ActivityInputBinding
 import com.lancer.passwordhelper.extension.showToast
+import com.lancer.passwordhelper.model.bean.Card
 
 class InputActivity : BaseActivity<ActivityInputBinding>(), View.OnClickListener {
 

@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.lancer.passwordhelper.InjectorUtil
-import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.R
-import com.lancer.passwordhelper.model.bean.Category
+import com.lancer.passwordhelper.base.BaseActivity
 import com.lancer.passwordhelper.databinding.ActivityFolderBinding
-import com.lancer.passwordhelper.extension.showToast
+import com.lancer.passwordhelper.model.bean.Category
 
 class FolderActivity : BaseActivity<ActivityFolderBinding>() {
     init {
